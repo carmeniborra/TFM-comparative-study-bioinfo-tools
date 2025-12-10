@@ -1,0 +1,17 @@
+# Lablog para obtener el diccionario de taxonomia. krona taxonomy databse
+# esta db es necesaria para generar graficos a partir de herramientas como MALT, que no genera un arcivo nativo que krona entienda
+
+# 1. Obtener la imagen de krona (si aun no se tiene)
+# cd /data/ucct/bi/pipelines/singularity-images
+# wget https://depot.galaxyproject.org/singularity/krona%3A2.8.1--pl5321hdfd78af_1
+# mv krona:2.8.1--pl5321hdfd78af_1 krona_2.8.1--pl5321hdfd78af_1.sif
+
+# 2. Crear la db
+mkdir taxonomy_db && cd taxonomy_db
+module load singularity
+
+singularity exec \
+   --bind /data:/data \
+   --bind /usr/bin/make:/usr/bin/make \
+   /data/ucct/bi/pipelines/singularity-images/krona_2.8.1--pl5321hdfd78af_1.sif \
+   bash -lc 'make --version && ktUpdateTaxonomy.sh /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/krona/taxonomy_db'

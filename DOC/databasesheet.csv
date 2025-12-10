@@ -1,0 +1,12 @@
+tool,db_name,db_params,db_path
+kraken2,db1,"--confidence 0.10",/data/ucct/bi/references/kraken/k2_pluspfp_16_GB_20250714.tar.gz
+bracken,db2,"--confidence 0.10; -l G -r 150",/data/ucct/bi/references/kraken/k2_pluspfp_16_GB_20250714.tar.gz
+centrifuge,db3,,/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/centrifugue/nt_2018_3_3.tar.gz
+metaphlan,db4,,/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/metaphlan
+kaiju,db5,,/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/kaiju/
+diamond,db6,,/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/diamond/diamond_refseq_prok.dmnd
+krakenuniq,db7,,/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/krakenuniq/microbialdb
+motus,db8,,/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/motus/db_mOTU
+malt,db9,,/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/malt_virus/malt_db/
+kmcp,kmcp,;-X /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/kmcp/KMCP_DB/kmcp/taxdump -T /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/kmcp/KMCP_DB/kmcp/taxid.map,/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/kmcp/KMCP_DB/kmcp
+ganon,db11,"--db-prefix /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/ganon/db/abfv_rs_t1s",/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/ganon/db

@@ -1,0 +1,3 @@
+# LABLOG PARA BAJAR LA BASE DE DATOS DE KRAKEN/BRACKEN
+
+wget https://genome-idx.s3.amazonaws.com/kraken/k2_pluspfp_16_GB_20250714.tar.gz

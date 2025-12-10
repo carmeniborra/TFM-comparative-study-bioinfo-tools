@@ -1,0 +1,1 @@
+sbatch ganon_build_refseq_species1.sbatch

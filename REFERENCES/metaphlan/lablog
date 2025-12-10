@@ -1,0 +1,22 @@
+# LABLOG DB METAPHLAN
+
+module load singularity
+
+# imagen Singularity
+wget "https://depot.galaxyproject.org/singularity/metaphlan%3A4.2.2--pyhdfd78af_0" -O /data/ucct/bi/pipelines/singularity-imagesmetaphlan_4.2.2--pyhdfd78af_0.sif
+
+
+#creacion db
+DB=/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/metaphlan
+IMG=/data/ucct/bi/pipelines/singularity-images/metaphlan_4.2.2--pyhdfd78af_0.sif
+
+# Comprobacion imagen tiene metaphlan
+singularity exec --cleanenv "$IMG" sh -lc 'which metaphlan && metaphlan --version'
+
+# Instalar la DB (bind host->container con la MISMA ruta)
+singularity exec --cleanenv \
+  -B "$DB":"$DB" \
+  "$IMG" \
+  metaphlan --install \
+    --index mpa_vJan25_CHOCOPhlAnSGB_202503 \
+    --db_dir "$DB"

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+scratch_dir=$(echo $PWD | sed "s/\/data\/ucct\/bi\/scratch_tmp/\/scratch/g")
+
+cat << EOF > kaiju_db.sbatch
+#!/bin/bash
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=100G
+#SBATCH --time=24:00:00
+#SBATCH --output=kaiju_db_%j.log
+#SBATCH --partition=middle_idx
+#SBATCH --chdir $scratch_dir
+
+module load singularity
+
+#ejecucion
+singularity exec --cleanenv \\
+  -B /data/ucct/bi/scratch_tmp/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/kaiju:/data/ucct/bi/scratch_tmp/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/kaiju \\
+  /data/ucct/bi/pipelines/singularity-images/kaiju-1.10.0--h43eeafb_0.img \\
+  kaiju-makedb -s refseq
+EOF
+
+echo sbatch kaiju_db.sbatch > _00_kaiju_db.sh

@@ -1,0 +1,129 @@
+#!/bin/bash
+
+# Preguntar por las muestras del subanalisis
+echo "Paste the samples + Ctrl+D:"
+cat > tmp_muestras.txt
+
+# Crear carpeta 00-reads
+mkdir -p 00-reads
+
+# Generar samples_id.txt eliminando sufijos como _R1, _R2, _1, _2, y extensiones
+cat tmp_muestras.txt | sed -E 's/_R[12].*|_[12].*//' | sort -u > samples_id.txt
+
+# Crear enlaces simbolicos
+cd 00-reads
+
+while read sample; do
+  # Buscar R1
+  r1=$(ls ../../../RAW/${sample}_*R1*.fastq.gz 2>/dev/null)
+  [ -z "$r1" ] && r1=$(ls ../../../RAW/${sample}_1.fastq.gz 2>/dev/null)
+
+  # Buscar R2
+  r2=$(ls ../../../RAW/${sample}_*R2*.fastq.gz 2>/dev/null)
+  [ -z "$r2" ] && r2=$(ls ../../../RAW/${sample}_2.fastq.gz 2>/dev/null)
+
+  # Crear enlaces simbolicos si existen los archivos
+  [ -e "$r1" ] && ln -sf "$r1" ${sample}_R1.fastq.gz
+  [ -e "$r2" ] && ln -sf "$r2" ${sample}_R2.fastq.gz
+done < ../samples_id.txt
+
+cd -
+
+# Limpiar archivo temporal
+rm tmp_muestras.txt
+
+# ------- samplesheet con sample = LIBRARY NAME -------
+TSV="../../RAW/ERP015409/ERP015409_filtrado.tsv"
+echo "sample,run_accession,instrument_platform,fastq_1,fastq_2,fasta" > samplesheet.csv
+
+# Para cada run en samples_id.txt, busca su library en el TSV.
+# Si no la encuentra, usa el propio run como sample. Platform por defecto ILLUMINA.
+awk -F'\t' '
+  NR==FNR {
+    # 1er archivo = TSV. Saltar cabecera
+    if (FNR==1) { next }
+    lib[$1]=$2      # run_accession -> library_name
+    next
+  }
+  {
+    # 2º archivo = samples_id.txt (lista de run_accession)
+    run=$0
+    sample = (run in lib && lib[run]!="") ? lib[run] : run
+    printf "%s,%s,%s,00-reads/%s_R1.fastq.gz,00-reads/%s_R2.fastq.gz,\n",
+           sample, run, "ILLUMINA", run, run
+  }
+' "$TSV" samples_id.txt >> samplesheet.csv
+# ------------------------------------------------------------------------
+
+scratch_dir=$(echo $PWD | sed "s/\/data\/ucct\/bi\/scratch_tmp/\/scratch/g")
+
+# slurm sbatch file setup
+cat <<EOF > taxprofiler.sbatch
+#!/bin/bash
+#SBATCH --ntasks 1
+#SBATCH --cpus-per-task 4
+#SBATCH --mem 6G
+#SBATCH --time 120:00:00
+#SBATCH --partition long_idx
+#SBATCH --output $(date '+%Y%m%d')_taxprofiler.log
+#SBATCH --chdir $scratch_dir
+
+# module load Nextflow singularity
+module purge
+module load Nextflow/25.04.6
+module load singularity/3.7.1
+
+mkdir -p ./results
+
+export NXF_OPTS="-Xms1G -Xmx6G"
+
+nextflow run /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4 \\
+    -profile singularity \\
+    -c ../../DOC/taxprofiler.config \\
+    --input samplesheet.csv \\
+    --outdir ./results \\
+    --databases ../../DOC/databasesheet.csv \\
+    --multiqc_title ERP015409 \\
+    --preprocessing_qc_tool fastqc \\
+    --perform_shortread_qc true --shortread_qc_tool fastp --shortread_qc_mergepairs false --shortread_qc_includeunmerged false --shortread_qc_minlength 50 \\
+    --perform_shortread_complexityfilter true --shortread_complexityfilter_tool bbduk --shortread_complexityfilter_entropy 0.5 --shortread_complexityfilter_bbduk_windowsize 50 --save_complexityfiltered_reads true \\
+    --perform_shortread_hostremoval true --hostremoval_reference /data/ucct/bi/references/eukaria/homo_sapiens/hg38/NCBI/genome/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz \\
+    --shortread_hostremoval_index ../../REFERENCES/bowtie2/ \\
+    --run_kraken2 false \\
+    --run_bracken false \\
+    --run_centrifuge false \\
+    --run_kaiju false --kaiju_taxon_rank genus \\
+    --run_metaphlan false \\
+    --run_ganon false --ganon_report_rank genus \\
+    --run_motus false \\
+    --run_diamond true \\
+    --run_krakenuniq false \\
+    --run_malt false \\
+    --run_kmcp false \\
+    --run_profile_standardisation \\
+    --standardisation_taxpasta_format tsv \\
+    --taxpasta_taxonomy_dir ../../REFERENCES/taxdump/2025-09-01_taxdump/\\
+    --taxpasta_add_name --taxpasta_add_rank \\
+    --run_krona true --krona_taxonomy_directory /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/krona/taxonomy_db --run_krona_combined \\
+    -resume
+EOF
+
+# echo "sbatch taxprofiler.sbatch" > _01_nf_taxprofiler.sh
+
+# cat <<EOF > _02_to_genus.sh
+# module load Python
+# python ../../DOC/to_genus.py results/taxpasta/ \
+#        --pattern "*.tsv" \
+#        --taxdump-dir ../../REFERENCES/taxdump/2025-09-01_taxdump \
+#        --outdir results/taxpasta/filtered
+# EOF
+
+
+# cat <<EOF > _03_rel_abundance.sh
+# module load Python
+# python ../../DOC/rel_abundance.py results/taxpasta/filtered/ \
+#         --pattern "*.tsv" --outdir results/taxpasta/rel_abundance \
+#         --level genus --study-wide \
+#         --sample-trim _
+# EOF
+

@@ -1,0 +1,7 @@
+# module load SRA-Toolkit
+
+scratch_dir=$(echo $PWD | sed "s/\/data\/ucct\/bi\/scratch_tmp/\/scratch/g")
+
+cat sra_ids.txt | xargs -I % echo "srun --chdir $scratch_dir --output logs/FASTERQDUMP.% --job-name FASTERQDUMP.% --cpus-per-task 6 --mem 16G --partition short_idx --time 10:00:00 fasterq-dump --split-files % &" > _00_fastqdump.sh
+
+find . -name "*.fastq" | xargs -I @@ echo "srun --chdir $scratch_dir --output logs/GZIP.%j.log --job-name GZIP.%j --cpus-per-task 4 --mem 16G --partition short_idx --time 10:00:00 pigz -p 4 @@ &" > _01_gzip.sh
