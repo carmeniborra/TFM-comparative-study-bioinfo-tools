@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# Copiar carpeta de taxpasta
+cp -r ../20251119_ANALYSIS15_ERP015409/results/taxpasta .
+
+cat << 'EOF' > _00_supdata_to_gs.sh
+srun \
+	--job-name supdatatogs \
+	--cpus-per-task 1 \
+  	--mem 2G \
+ 	--partition short_idx \
+  	--time 01:00:00 \
+  	bash -lc 'module load Python; python ../../DOC/supdata_to_gs.py ../../RAW/ERP015409/sup_data_3_ERP015409.xlsx gold_standard.tsv'
+EOF
+
+cat << 'EOF' > _01_align_genus_space.sh
+srun \
+	--job-name aligntables \
+	--cpus-per-task 1 \
+  	--mem 2G \
+  	--partition short_idx \
+  	--time 01:00:00 \
+  	bash -lc 'module load Python; \
+		  python ../../DOC/align_genus_space.py --inputs taxpasta/rel_abundance/*study.tsv gold_standard.tsv --outdir aligned_tables && \
+		  rm -rf aligned_tables/kraken2_db2*'
+EOF
+
+cat << 'EOF' > _02_metricas.sh
+srun \
+        --job-name metrics \
+        --cpus-per-task 1 \
+        --mem 2G \
+        --partition short_idx \
+        --time 00:30:00 \
+        bash -lc 'module load Python; python ../../DOC/metricas.py --gs aligned_tables/gold_standard.aligned.tsv --tools_dir aligned_tables --out metricas_por_muestra.tsv'
+EOF
+
+cat << 'EOF' > _03_normalidad_test.sh
+srun \
+        --job-name normalidad_test \
+        --cpus-per-task 1 \
+        --mem 2G \
+        --partition short_idx \
+        --time 00:30:00 \
+        bash -lc 'module load Python; python ../../DOC/normalidad_test.py .'
+EOF
+
+cat << 'EOF' > _04_test_no_parametricos.sh
+srun \
+        --job-name test_no_parametricos \
+        --cpus-per-task 1 \
+        --mem 2G \
+        --partition short_idx \
+        --time 00:30:00 \
+        bash -lc 'module load Python; python ../../DOC/test_no_parametricos.py metricas_por_muestra.tsv --outdir tests_metricas'
+EOF
