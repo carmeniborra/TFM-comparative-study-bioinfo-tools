@@ -1,3 +1,5 @@
+# Script para obtener los identificadores de las muestras analizadas en el estudio de referencia
+
 #!/usr/bin/env python3
 import pandas as pd
 import os
