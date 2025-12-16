@@ -1,7 +1,7 @@
-# Lablog para obtener el diccionario de taxonomia. krona taxonomy databse
+# Lablog para obtener el diccionario de taxonomia krona
 # esta db es necesaria para generar graficos a partir de herramientas como MALT, que no genera un arcivo nativo que krona entienda
 
-# 1. Obtener la imagen de krona (si aun no se tiene)
+# 1. Obtener la imagen de krona
 # cd /data/ucct/bi/pipelines/singularity-images
 # wget https://depot.galaxyproject.org/singularity/krona%3A2.8.1--pl5321hdfd78af_1
 # mv krona:2.8.1--pl5321hdfd78af_1 krona_2.8.1--pl5321hdfd78af_1.sif
