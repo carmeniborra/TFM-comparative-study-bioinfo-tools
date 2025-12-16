@@ -20,7 +20,7 @@ set -euo pipefail
 module purge
 module load singularity
 
-# Carpeta donde guardarás las bases
+# Carpeta donde se guardan las bases
 export DB=/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/ganon/db
 mkdir -p "\$DB"/{cache,tmp}
 
@@ -30,7 +30,7 @@ export TMPDIR="$scratch_dir/tmp"
 mkdir -p "\$TMPDIR"
 export IMG=/data/ucct/bi/pipelines/singularity-images/singularity-ganon-2.0.0--py39ha35b9be_0.img
 
-# Asegura variables dentro del contenedor pese a --cleanenv
+# Asegurar variables dentro del contenedor pese a --cleanenv
 export SINGULARITYENV_XDG_CACHE_HOME="\$XDG_CACHE_HOME"
 export SINGULARITYENV_TMPDIR="\$TMPDIR"
 
