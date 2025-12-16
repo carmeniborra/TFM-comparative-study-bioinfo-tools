@@ -1,18 +1,20 @@
 #!/usr/bin/env python3
-# Compara tu unified_abundance.clean.csv con el Excel del paper (Relative abundances (long))
+
+# Script que compara el csv del análisis con el Excel del paper (Relative abundances (long))
 import pandas as pd
 import numpy as np
 from scipy.stats import spearmanr
 from pathlib import Path
 import sys
 
+# Configuración
 CLEAN = Path("results/taxpasta/unified_abundance.clean.csv")
-# ⚠️ Ajusta la ruta al Excel en TU HPC (colócalo donde quieras y cambia aquí):
 PAPER_XLSX = Path("../../RAW/ERP015409/sup_data_3_ERP015409.xlsx")
 
 OUTD  = Path("results/metrics")
 OUTD.mkdir(parents=True, exist_ok=True)
 
+# Funciones
 def bray_curtis(a, b):
     den = (a + b).sum()
     return np.nan if den <= 0 else np.abs(a - b).sum() / den
@@ -23,12 +25,12 @@ def main():
     if not PAPER_XLSX.exists():
         sys.exit(f"No encuentro el Excel del paper en {PAPER_XLSX}. Copia el .xlsx ahí o cambia la ruta en el script.")
 
-    # 1) Tus datos (ya limpios a nivel genus)
-    your = pd.read_csv(CLEAN, dtype={"sample_id": str, "profiler": str, "tax_name": str})
-    your = your[["sample_id","profiler","tax_name","rel_abundance"]].copy()
-    your["tax_lc"] = your["tax_name"].str.lower()
+    # 1. Datos (ya limpios a nivel genus)
+    data = pd.read_csv(CLEAN, dtype={"sample_id": str, "profiler": str, "tax_name": str})
+    data = data[["sample_id","profiler","tax_name","rel_abundance"]].copy()
+    data["tax_lc"] = data["tax_name"].str.lower()
 
-    # 2) Paper (hoja "Relative abundances (long)")
+    # 2. Paper (hoja "Relative abundances (long)")
     try:
         ref = pd.read_excel(PAPER_XLSX, sheet_name="Relative abundances (long)")
     except ImportError as e:
@@ -45,14 +47,14 @@ def main():
     ref = ref[["sample_id","tax_name","relative_abundance"]].copy()
     ref["tax_lc"] = ref["tax_name"].astype(str).str.lower()
 
-    # 3) Emparejar por (sample_id, taxón)
-    merged = (your.groupby(["sample_id","profiler","tax_lc"], as_index=False)["rel_abundance"].sum()
+    # 3. Emparejar por (sample_id, taxón)
+    merged = (data.groupby(["sample_id","profiler","tax_lc"], as_index=False)["rel_abundance"].sum()
                    .merge(ref.groupby(["sample_id","tax_lc"], as_index=False)["relative_abundance"].sum(),
                           on=["sample_id","tax_lc"], how="inner"))
 
     print(f"Muestras en común: {merged['sample_id'].nunique()} | pares taxón-muestra: {len(merged)}")
 
-    # 4) Métricas globales por perfilador
+    # 4. Métricas globales por perfilador
     rows = []
     for p in sorted(merged["profiler"].unique()):
         sub = merged[merged["profiler"]==p]
@@ -64,7 +66,7 @@ def main():
     print("\n== Global scores by profiler ==")
     print(scores.to_string(index=False))
 
-    # 5) Top-10 overlap por muestra y perfilador
+    # 5. Top-10 overlap por muestra y perfilador
     def topk_overlap(df_y, df_r, k=10):
         s1 = set(df_y.sort_values("rel_abundance", ascending=False).head(k)["tax_lc"])
         s2 = set(df_r.sort_values("relative_abundance", ascending=False).head(k)["tax_lc"])
