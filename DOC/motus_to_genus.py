@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 """
 Colapsa tabla mOTUs/Taxpasta a nivel de género sumando las especies.
 

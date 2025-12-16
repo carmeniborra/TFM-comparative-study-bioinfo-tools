@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# Script para estandarizar los resultados de metaphlan con el formato deseado.
 import re
 import sys
 import argparse
@@ -98,11 +99,11 @@ def load_valid_bacterial_genera(taxdump_dir: str):
     parent, rank = load_nodes(nodes_path)
     is_bacteria = build_bacteria_flag(parent)
 
-    # 1) Taxids de rango 'genus' que pertenezcan a Bacteria
+    # 1. Taxids de rango 'genus' que pertenezcan a Bacteria
     genus_taxids = {tid for tid, r in rank.items()
                     if r == "genus" and is_bacteria(tid)}
 
-    # 2) Cargar nombres científicos de esos taxids
+    # 2. Cargar nombres científicos de esos taxids
     valid_genera = set()
     with names_path.open() as f:
         for line in f:
@@ -134,15 +135,15 @@ def extract_genus(clade: str, valid_genera: set):
       - Género presente en el conjunto de géneros válidos de NCBI
     """
 
-    # 1) Filtrar solo Bacteria en la anotación de MetaPhlAn
+    # 1. Filtrar solo Bacteria en la anotación de MetaPhlAn
     if not clade.startswith("k__Bacteria|") and clade != "k__Bacteria":
         return None
 
-    # 2) Si hay especie/strain, descartamos (solo nivel género)
+    # 2. Si hay especie/strain, descartamos (solo nivel género)
     if re.search(r'(\|s__|\|t__)', clade):
         return None
 
-    # 3) Buscar el último taxón de nivel género (g__)
+    # 3. Buscar el último taxón de nivel género (g__)
     parts = clade.split("|")
     g = None
     for p in reversed(parts):
@@ -248,9 +249,9 @@ def main():
         # Dejas los % tal cual (no renormalizas a 1)
         pass
     else:
-        # 1) pasar de % a proporciones
+        # 1. pasar de % a proporciones
         agg[sample_cols] = agg[sample_cols] / 100.0
-        # 2) renormalizar cada muestra para que sume 1
+        # 2. renormalizar cada muestra para que sume 1
         col_sums = agg[sample_cols].sum(axis=0)
         agg[sample_cols] = agg[sample_cols].div(col_sums.replace({0: 1}), axis=1)
 
@@ -284,5 +285,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

@@ -216,7 +216,7 @@ def main():
 
     df_out = pd.DataFrame(all_results)
     df_out.to_csv(args.out, sep="\t", index=False)
-    print(f"✅ Métricas por muestra guardadas en {os.path.abspath(args.out)}")
+    print(f"Métricas por muestra guardadas en {os.path.abspath(args.out)}")
 
 
 if __name__ == "__main__":

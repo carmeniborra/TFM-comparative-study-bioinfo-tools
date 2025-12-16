@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+#Script para estandarizar los resultados de ganon con el formato deseado.
 import re
 import sys
 import argparse

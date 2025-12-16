@@ -78,7 +78,7 @@ def main(metrics_dir: str):
     out_file = metrics_dir / "normality_tests_Shapiro.tsv"
     df_out.to_csv(out_file, sep="\t", index=False)
 
-    print(f"✅ Tests de normalidad (Shapiro-Wilk) guardados en: {out_file}")
+    print(f"Tests de normalidad (Shapiro-Wilk) guardados en: {out_file}")
 
 
 if __name__ == "__main__":

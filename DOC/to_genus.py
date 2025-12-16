@@ -97,13 +97,13 @@ def load_valid_bacterial_genera(taxdump_dir: str) -> set[str]:
     parent, rank = load_nodes(nodes_path)
     is_bacteria = build_bacteria_flag(parent)
 
-    # 1) Taxids de rango 'genus' que pertenezcan a Bacteria
+    # 1. Taxids de rango 'genus' que pertenezcan a Bacteria
     genus_taxids = {
         tid for tid, r in rank.items()
         if r == "genus" and is_bacteria(tid)
     }
 
-    # 2) Cargar nombres científicos de esos taxids
+    # 2. Cargar nombres científicos de esos taxids
     valid_genera = set()
     with names_path.open() as f:
         for line in f:
@@ -145,7 +145,7 @@ def filter_one(path: Path, valid_genera: set[str] | None = None) -> pd.DataFrame
         print(f"[WARN] {path.name}: no existe la columna 'rank'; lo salto.", file=sys.stderr)
         return None
 
-    # 1) rank == genus
+    # 1. rank == genus
     mask = df["rank"].astype(str).str.strip().str.lower() == "genus"
     out = df.loc[mask].copy()
     if out.empty:
@@ -161,7 +161,7 @@ def filter_one(path: Path, valid_genera: set[str] | None = None) -> pd.DataFrame
         )
         return out
 
-    # 2) Si se ha proporcionado taxdump, filtrar por géneros bacterianos válidos
+    # 2. Si se ha proporcionado taxdump, filtrar por géneros bacterianos válidos
     if valid_genera is not None:
         g = out["name"].astype(str).str.strip()
 
@@ -181,7 +181,7 @@ def filter_one(path: Path, valid_genera: set[str] | None = None) -> pd.DataFrame
             )
             return None
 
-    # 3) EXCLUIR Candidatus usando la columna 'name'
+    # 3. EXCLUIR Candidatus usando la columna 'name'
     g2 = out["name"].astype(str).str.strip()
 
     # Filtra cualquier nombre que empiece por "Candidatus" (may/max da igual)
