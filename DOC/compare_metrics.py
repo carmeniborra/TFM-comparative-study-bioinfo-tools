@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# Script para calcular las metricas de comparacion entre las tablas de resultados de las distintas herramientas con los resultados de referencia.
 import pandas as pd
 import numpy as np
 from pathlib import Path
@@ -173,13 +174,13 @@ def pruebas_entre_herramientas(df_metrics, output_folder):
         df_global = pd.DataFrame(global_rows)
         df_global.to_csv(output_folder / "global_tests_Friedman.tsv",
                          sep="\t", index=False)
-        print(f"✅ Tests globales (Friedman) guardados en {output_folder / 'global_tests_Friedman.tsv'}")
+        print(f"Tests globales (Friedman) guardados en {output_folder / 'global_tests_Friedman.tsv'}")
 
     if pairwise_rows:
         df_pairs = pd.DataFrame(pairwise_rows)
         df_pairs.to_csv(output_folder / "pairwise_Wilcoxon_FDR.tsv",
                         sep="\t", index=False)
-        print(f"✅ Comparaciones por pares guardadas en {output_folder / 'pairwise_Wilcoxon_FDR.tsv'}")
+        print(f"Comparaciones por pares guardadas en {output_folder / 'pairwise_Wilcoxon_FDR.tsv'}")
 
 
 # ---------- PRUEBAS DE NORMALIDAD ----------
@@ -219,7 +220,7 @@ def pruebas_normalidad(df_metrics, output_folder):
         df_norm = pd.DataFrame(rows)
         df_norm.to_csv(output_folder / "normality_tests_Shapiro.tsv",
                        sep="\t", index=False)
-        print(f"✅ Pruebas de normalidad (Shapiro) guardadas en {output_folder / 'normality_tests_Shapiro.tsv'}")
+        print(f"Pruebas de normalidad (Shapiro) guardadas en {output_folder / 'normality_tests_Shapiro.tsv'}")
 
 
 # ---------- MAIN ----------
@@ -311,7 +312,7 @@ def main():
     # Guardar métricas por muestra
     out_metrics = output_root / "metricas_por_muestra.tsv"
     df_metrics.to_csv(out_metrics, sep="\t", index=False)
-    print(f"\n✅ Métricas por muestra guardadas en {out_metrics}")
+    print(f"\n Métricas por muestra guardadas en {out_metrics}")
 
     # Pruebas de normalidad
     pruebas_normalidad(df_metrics, output_root)
@@ -322,4 +323,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
