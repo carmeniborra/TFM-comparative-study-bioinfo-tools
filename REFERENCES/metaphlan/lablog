@@ -10,10 +10,10 @@ wget "https://depot.galaxyproject.org/singularity/metaphlan%3A4.2.2--pyhdfd78af_
 DB=/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/metaphlan
 IMG=/data/ucct/bi/pipelines/singularity-images/metaphlan_4.2.2--pyhdfd78af_0.sif
 
-# Comprobacion imagen tiene metaphlan
+# Comprobacion imagen metaphlan
 singularity exec --cleanenv "$IMG" sh -lc 'which metaphlan && metaphlan --version'
 
-# Instalar la DB (bind host->container con la MISMA ruta)
+# Instalar la DB (bind host->container con la misma ruta)
 singularity exec --cleanenv \
   -B "$DB":"$DB" \
   "$IMG" \
