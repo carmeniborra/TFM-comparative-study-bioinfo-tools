@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Lablog con el código para el análsis comparativo de los datos
 # Copiar carpeta de taxpasta
 cp -r ../20251119_ANALYSIS15_ERP015409/results/taxpasta .
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Preguntar por las muestras del subanalisis
+#Pegar las muestras del subanalisis
 echo "Paste the samples + Ctrl+D:"
 cat > tmp_muestras.txt
 
@@ -109,21 +109,3 @@ nextflow run /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2
 EOF
 
 echo "sbatch taxprofiler.sbatch" > _01_nf_taxprofiler.sh
-
-cat <<EOF > _02_to_genus.sh
-module load Python
-python ../../DOC/to_genus.py results/taxpasta/ \
-       --pattern "*.tsv" \
-       --taxdump-dir ../../REFERENCES/taxdump/2025-09-01_taxdump \
-       --outdir results/taxpasta/filtered
-EOF
-
-
-cat <<EOF > _03_rel_abundance.sh
-module load Python
-python ../../DOC/rel_abundance.py results/taxpasta/filtered/ \
-        --pattern "*.tsv" --outdir results/taxpasta/rel_abundance \
-        --level genus --study-wide \
-        --sample-trim _
-EOF
-

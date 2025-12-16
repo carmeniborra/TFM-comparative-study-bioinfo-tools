@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Preguntar por las muestras del subanalisis
+# Pegar las muestras del subanalisis
 echo "Paste the samples + Ctrl+D:"
 cat > tmp_muestras.txt
 
@@ -89,13 +89,13 @@ nextflow run /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2
     --perform_shortread_complexityfilter true --shortread_complexityfilter_tool bbduk --shortread_complexityfilter_entropy 0.5 --shortread_complexityfilter_bbduk_windowsize 50 --save_complexityfiltered_reads true \\
     --perform_shortread_hostremoval true --hostremoval_reference /data/ucct/bi/references/eukaria/homo_sapiens/hg38/NCBI/genome/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz \\
     --shortread_hostremoval_index ../../REFERENCES/bowtie2/ \\
-    --run_kraken2 false \\
-    --run_bracken false \\
-    --run_centrifuge false \\
-    --run_kaiju false --kaiju_taxon_rank genus \\
-    --run_metaphlan false \\
-    --run_ganon false --ganon_report_rank genus \\
-    --run_motus false \\
+    --run_kraken2 true \\
+    --run_bracken true \\
+    --run_centrifuge true \\
+    --run_kaiju true --kaiju_taxon_rank genus \\
+    --run_metaphlan true \\
+    --run_ganon true --ganon_report_rank genus \\
+    --run_motus true \\
     --run_diamond true \\
     --run_krakenuniq false \\
     --run_malt false \\
@@ -110,20 +110,55 @@ EOF
 
 echo "sbatch taxprofiler.sbatch" > _01_nf_taxprofiler.sh
 
-cat <<EOF > _02_to_genus.sh
-module load Python
-python ../../DOC/to_genus.py results/taxpasta/ \
-       --pattern "*.tsv" \
-       --taxdump-dir ../../REFERENCES/taxdump/2025-09-01_taxdump \
-       --outdir results/taxpasta/filtered
+# Scripts postprocesado
+
+cat <<'EOF' > _02_to_genus.sh
+srun \
+	--job-name TOGENUS \
+	--cpus-per-task 2 \
+  	--mem 2G \
+  	--partition short_idx \
+  	--time 01:00:00 \
+  	bash -lc 'module load Python; python ../../DOC/to_genus.py results/taxpasta/ --pattern "*.tsv" --outdir results/taxpasta/filtered --taxdump-dir ../../REFERENCES/taxdump/2025-09-01_taxdump'
 EOF
 
+cat <<'EOF' > _03_motus_to_genus.sh
+srun \
+        --job-name MOTUSTOGENUS \
+        --cpus-per-task 2 \
+        --mem 2G \
+        --partition short_idx \
+        --time 01:00:00 \
+        bash -lc 'module load Python; python ../../DOC/motus_to_genus.py results/taxpasta/motus_db8.tsv --out ./results/taxpasta/filtered/motus_db8.tsv.genus.tsv --taxdump-dir ../../REFERENCES/taxdump/2025-09-01_taxdump'
+EOF
 
-cat <<EOF > _03_rel_abundance.sh
-module load Python
-python ../../DOC/rel_abundance.py results/taxpasta/filtered/ \
-        --pattern "*.tsv" --outdir results/taxpasta/rel_abundance \
-        --level genus --study-wide \
-        --sample-trim _
+cat <<'EOF' > _04_rel_abundance.sh
+srun \
+        --job-name RELABUNDANCE \
+        --cpus-per-task 2 \
+        --mem 2G \
+        --partition short_idx \
+        --time 01:00:00 \
+        bash -lc 'module load Python; python ../../DOC/rel_abundance.py results/taxpasta/filtered/ --pattern "*.tsv" --outdir results/taxpasta/rel_abundance --level genus --study-wide --sample-trim "_ERR"'
+EOF
+
+cat <<'EOF' > _05_ganon_to_standard.sh
+srun \
+        --job-name GANONTOSTD \
+        --cpus-per-task 2 \
+        --mem 2G \
+        --partition short_idx \
+        --time 01:00:00 \
+        bash -lc 'module load Python; python ../../DOC/ganon_to_standard.py results/ganon/ganon_db11_combined_reports.txt  --taxdump-dir ../../REFERENCES/taxdump/2025-09-01_taxdump  --drop-root   -o results/taxpasta/rel_abundance/ganon_db11.tsv.genus.tsv.study.tsv'
+EOF
+
+cat <<'EOF' > _06_metaphlan_to_standard.sh
+srun \
+        --job-name METAPHLANTOSTD \
+        --cpus-per-task 2 \
+        --mem 2G \
+        --partition short_idx \
+        --time 01:00:00 \
+        bash -lc 'module load Python; python ../../DOC/metaphlan_to_standard.py results/metaphlan/metaphlan_db4_combined_reports.txt --taxdump-dir ../../REFERENCES/taxdump/2025-09-01_taxdump -o results/taxpasta/rel_abundance/metaphlan_db4.tsv.genus.tsv.study.tsv'
 EOF
 
