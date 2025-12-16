@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+# Script para alinear el espacio taxonómico de las tablas de las diferentes herramientas en una matriz comparable entre ellas.
+
 import argparse
 from pathlib import Path
 import sys
@@ -73,7 +75,7 @@ def main():
     outdir = Path(args.outdir)
     outdir.mkdir(parents=True, exist_ok=True)
 
-    # 1) Leer todas las tablas y recolectar géneros + columnas de muestra
+    # 1. Leer todas las tablas y recolectar géneros + columnas de muestra
     dfs = {}
     sample_cols_dict = {}
     all_genera = set()
@@ -88,7 +90,7 @@ def main():
     all_genera = sorted(all_genera)
     print(f"[INFO] Géneros totales (unión de todos los archivos): {len(all_genera)}", file=sys.stderr)
 
-    # 2) Reindexar cada tabla al espacio global de géneros
+    # 2. Reindexar cada tabla al espacio global de géneros
     for p in in_paths:
         df = dfs[p]
         sample_cols = sample_cols_dict[p]
