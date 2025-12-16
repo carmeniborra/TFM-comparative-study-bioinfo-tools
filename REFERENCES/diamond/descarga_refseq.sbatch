@@ -57,13 +57,13 @@ echo "Descargando archivos de mapeo y taxonomía de NCBI..."
 wget "ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/accession2taxid/prot.accession2taxid.gz"
 # Archivos de la estructura Taxonómica (nodes y names)
 wget "ftp://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdmp.zip"
-unzip taxdmp.zip nodes.dmp names.dmp 
+unzip taxdmp.zip nodes.dmp names.dmp
 rm taxdmp.zip # Limpiar el zip
 
 echo "¡Todos los archivos necesarios para la base de datos de DIAMOND han sido descargados y preparados!"
 echo "Archivos listos: $OUTPUT_DB, prot.accession2taxid.gz, nodes.dmp, names.dmp"
 
-#creación de la base de datos de DIAMOND, que puede ir aquí:
+#creación de la base de datos de DIAMOND:
 echo "Creando la base de datos de DIAMOND..."
 
 singularity exec --cleanenv \
