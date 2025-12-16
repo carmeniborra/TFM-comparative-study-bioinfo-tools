@@ -1,10 +1,6 @@
 # Lablog para descargar la base de datos de mOTUs
 
-#mOTUs does not provide the ability to construct custom databases. 
-#Therefore we recommend to use the the prebuilt database of marker genes provided by the developers.
-
-# Do not change the directory name of the resulting database if moving to a central location 
-#The database name of db_mOTU/ is hardcoded in the mOTUs tool
+# No cambiar el nombre del directorio creado (hardcoded en mOTUs)
 
 #SCRIPT 1 PARA DESCARGAR LA BASE DE DATOS EN LA IMAGEN
 cat << EOF > _00_dbmotus.sh
@@ -47,7 +43,7 @@ cat << EOF > _01_extracciondb.sh
 #!/bin/bash
 set -euo pipefail
 
-# 1. Verificar tamano del archivo descargado (~3 GB)
+# 1. Verificar tamano del archivo descargado
 echo "Tamano de la base de datos:"
 ls -lh /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/tmp_motus/db_mOTU.tar.gz
 
