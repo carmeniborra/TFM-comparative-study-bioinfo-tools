@@ -8,6 +8,7 @@
 #SBATCH -e dl_microbialdb.err
 #SBATCH --chdir /scratch/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/krakenuniq
 
+# ---CONFIGURACION---
 set -euo pipefail
 
 DEST="/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/krakenuniq/microbialdb"
@@ -18,6 +19,7 @@ mkdir -p "$DEST"
 
 echo "[INFO] Descargando .tar.gz y .kdb a: $DEST"
 
+#Descarga de los archivos
 WGET="wget -c --no-verbose --tries=0 --read-timeout=30 --timeout=30 --waitretry=30 --retry-connrefused"
 
 $WGET -P "$DEST" "$URL_KDB"
@@ -29,4 +31,4 @@ if [[ "$TARFILE" == *.tar.gz ]]; then
   tar -xzf "$TARFILE"
 fi
 
-echo "[OK] Descarga y extracción completadas en: $DEST"
+echo "[OK] Descarga y extraccion completadas en: $DEST"
