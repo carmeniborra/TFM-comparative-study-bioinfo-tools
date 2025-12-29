@@ -1,0 +1,1825 @@
+[33mNextflow 25.10.2 is available - Please consider updating your version to it(B[m
+
+ N E X T F L O W   ~  version 25.04.6
+
+WARN: It appears you have never run this project before -- Option `-resume` is ignored
+Launching `/data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/main.nf` [crazy_mercator] DSL2 - revision: bba6c867d1
+
+
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/taxprofiler 1.2.4
+------------------------------------------------------
+Input/output options
+  input                             : samplesheet.csv
+  databases                         : ../../DOC/databasesheet.csv
+  outdir                            : ./results
+  multiqc_title                     : ERP015409
+
+Preprocessing short-read QC options
+  perform_shortread_qc              : true
+  shortread_qc_minlength            : 50
+  perform_shortread_complexityfilter: true
+  shortread_complexityfilter_entropy: 0.5
+  save_complexityfiltered_reads     : true
+
+Preprocessing host removal options
+  perform_shortread_hostremoval     : true
+  hostremoval_reference             : /data/ucct/bi/references/eukaria/homo_sapiens/hg38/NCBI/genome/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz
+  shortread_hostremoval_index       : ../../REFERENCES/bowtie2/
+
+Profiling options
+  run_diamond                       : true
+  kaiju_taxon_rank                  : genus
+  ganon_report_rank                 : genus
+
+Postprocessing and visualisation options
+  run_profile_standardisation       : true
+  run_krona                         : true
+  krona_taxonomy_directory          : /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/krona/taxonomy_db
+  taxpasta_taxonomy_dir             : ../../REFERENCES/taxdump/2025-09-01_taxdump/
+  taxpasta_add_name                 : true
+  taxpasta_add_rank                 : true
+
+Generic options
+  trace_report_suffix               : 2025-12-25_20-54-52
+
+Core Nextflow options
+  runName                           : crazy_mercator
+  containerEngine                   : singularity
+  launchDir                         : /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/ANALYSIS/20251221_ANALYSIS24_diamond7
+  workDir                           : /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/ANALYSIS/20251221_ANALYSIS24_diamond7/work
+  projectDir                        : /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4
+  userName                          : carmen.iborra
+  profile                           : singularity
+  configFiles                       : /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/nextflow.config, /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/ANALYSIS/20251221_ANALYSIS24_diamond7/../../DOC/taxprofiler.config
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+* The pipeline
+    https://doi.org/10.1101/2023.10.20.563221
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/taxprofiler/blob/master/CITATIONS.md
+
+WARN: The following invalid input values have been detected:
+
+* --max_cpus: 32
+* --max_time: 24.h
+* --run_krona_combined: true
+* --max_memory: 376 GB
+
+
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[-        ] NFC…ROFILER:TAXPROFILER:FASTQC -
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[-        ] NFC…ORTREAD_FASTP:FASTP_PAIRED -
+[-        ] NFC…ROCESSING:FASTQC_PROCESSED -
+[-        ] NFC…EXITYFILTERING:BBMAP_BBDUK -
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[-        ] NFC…ROFILER:TAXPROFILER:FASTQC -
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[-        ] NFC…ORTREAD_FASTP:FASTP_PAIRED -
+[-        ] NFC…ROCESSING:FASTQC_PROCESSED -
+[-        ] NFC…EXITYFILTERING:BBMAP_BBDUK -
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[-        ] NFC…ROFILER:TAXPROFILER:FASTQC -
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[-        ] NFC…ORTREAD_FASTP:FASTP_PAIRED -
+[-        ] NFC…ROCESSING:FASTQC_PROCESSED -
+[-        ] NFC…EXITYFILTERING:BBMAP_BBDUK -
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 6 more processes waiting for tasks…
+
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[-        ] NFC…ROFILER:TAXPROFILER:FASTQC -
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[-        ] NFC…ORTREAD_FASTP:FASTP_PAIRED -
+[-        ] NFC…ROCESSING:FASTQC_PROCESSED -
+[-        ] NFC…EXITYFILTERING:BBMAP_BBDUK -
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (3)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[9c/ba4562] NFC…AXPROFILER:FASTQC (ZMB.49) | 0 of 5
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[6b/2689dc] NFC…FASTP:FASTP_PAIRED (XK.60) | 0 of 5
+[-        ] NFC…ROCESSING:FASTQC_PROCESSED -
+[-        ] NFC…EXITYFILTERING:BBMAP_BBDUK -
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (10)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[20/f282f7] NFC…XPROFILER:FASTQC (ZMB.49b) | 0 of 5
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[a3/de7a47] NFC…STP:FASTP_PAIRED (ZMB.49b) | 0 of 5
+[-        ] NFC…ROCESSING:FASTQC_PROCESSED -
+[-        ] NFC…EXITYFILTERING:BBMAP_BBDUK -
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (10)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[9c/ba4562] NFC…AXPROFILER:FASTQC (ZMB.49) | 0 of 4, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[a3/de7a47] NFC…STP:FASTP_PAIRED (ZMB.49b) | 0 of 5
+[-        ] NFC…ROCESSING:FASTQC_PROCESSED -
+[-        ] NFC…EXITYFILTERING:BBMAP_BBDUK -
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+[9c/ba4562] NOTE: Process `NFCORE_TAXPROFILER:TAXPROFILER:FASTQC (ZMB.49)` terminated with an error exit status (134) -- Execution is retried (1)
+
+executor >  slurm (11)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[42/e87f52] NFC…AXPROFILER:FASTQC (ZMB.49) | 0 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[a3/de7a47] NFC…STP:FASTP_PAIRED (ZMB.49b) | 0 of 5
+[-        ] NFC…ROCESSING:FASTQC_PROCESSED -
+[-        ] NFC…EXITYFILTERING:BBMAP_BBDUK -
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+[9c/ba4562] NOTE: Process `NFCORE_TAXPROFILER:TAXPROFILER:FASTQC (ZMB.49)` terminated with an error exit status (134) -- Execution is retried (1)
+
+executor >  slurm (11)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[42/e87f52] NFC…AXPROFILER:FASTQC (ZMB.49) | 0 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[a3/de7a47] NFC…STP:FASTP_PAIRED (ZMB.49b) | 0 of 5
+[-        ] NFC…ROCESSING:FASTQC_PROCESSED -
+[-        ] NFC…EXITYFILTERING:BBMAP_BBDUK -
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+[9c/ba4562] NOTE: Process `NFCORE_TAXPROFILER:TAXPROFILER:FASTQC (ZMB.49)` terminated with an error exit status (134) -- Execution is retried (1)
+
+executor >  slurm (11)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[a5/9adc2f] NFC…AXPROFILER:FASTQC (ZAF.39) | 1 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[a3/de7a47] NFC…STP:FASTP_PAIRED (ZMB.49b) | 0 of 5
+[-        ] NFC…ROCESSING:FASTQC_PROCESSED -
+[-        ] NFC…EXITYFILTERING:BBMAP_BBDUK -
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (15)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[20/f282f7] NFC…XPROFILER:FASTQC (ZMB.49b) | 2 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[a3/de7a47] NFC…STP:FASTP_PAIRED (ZMB.49b) | 2 of 5
+[e1/7badf0] NFC…FASTQC_PROCESSED (ZMB.49b) | 0 of 2
+[3b/7070f9] NFC…ERING:BBMAP_BBDUK (ZAF.39) | 0 of 2
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (15)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[20/f282f7] NFC…XPROFILER:FASTQC (ZMB.49b) | 2 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[a3/de7a47] NFC…STP:FASTP_PAIRED (ZMB.49b) | 2 of 5
+[e1/7badf0] NFC…FASTQC_PROCESSED (ZMB.49b) | 0 of 2
+[3b/7070f9] NFC…ERING:BBMAP_BBDUK (ZAF.39) | 0 of 2
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (15)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[20/f282f7] NFC…XPROFILER:FASTQC (ZMB.49b) | 2 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[f2/a7ed69] NFC…ASTP:FASTP_PAIRED (ZMB.49) | 3 of 5
+[e1/7badf0] NFC…FASTQC_PROCESSED (ZMB.49b) | 0 of 2
+[3b/7070f9] NFC…ERING:BBMAP_BBDUK (ZAF.39) | 0 of 3
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (15)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[20/f282f7] NFC…XPROFILER:FASTQC (ZMB.49b) | 2 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[f2/a7ed69] NFC…ASTP:FASTP_PAIRED (ZMB.49) | 3 of 5
+[e1/7badf0] NFC…FASTQC_PROCESSED (ZMB.49b) | 0 of 3
+[3b/7070f9] NFC…ERING:BBMAP_BBDUK (ZAF.39) | 0 of 3
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (17)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[20/f282f7] NFC…XPROFILER:FASTQC (ZMB.49b) | 2 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[f2/a7ed69] NFC…ASTP:FASTP_PAIRED (ZMB.49) | 3 of 5
+[29/13044a] NFC…:FASTQC_PROCESSED (ZMB.49) | 0 of 3
+[0c/6dcb74] NFC…ERING:BBMAP_BBDUK (ZMB.49) | 0 of 3
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (17)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[20/f282f7] NFC…XPROFILER:FASTQC (ZMB.49b) | 2 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[f2/a7ed69] NFC…ASTP:FASTP_PAIRED (ZMB.49) | 3 of 5
+[29/13044a] NFC…:FASTQC_PROCESSED (ZMB.49) | 0 of 3
+[0c/6dcb74] NFC…ERING:BBMAP_BBDUK (ZMB.49) | 0 of 3
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (17)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[42/e87f52] NFC…AXPROFILER:FASTQC (ZMB.49) | 3 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[f2/a7ed69] NFC…ASTP:FASTP_PAIRED (ZMB.49) | 3 of 5
+[29/13044a] NFC…:FASTQC_PROCESSED (ZMB.49) | 0 of 3
+[0c/6dcb74] NFC…ERING:BBMAP_BBDUK (ZMB.49) | 0 of 3
+[-        ] NFC…_HOSTREMOVAL:BOWTIE2_ALIGN -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (18)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[42/e87f52] NFC…AXPROFILER:FASTQC (ZMB.49) | 3 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[f2/a7ed69] NFC…ASTP:FASTP_PAIRED (ZMB.49) | 3 of 5
+[29/13044a] NFC…:FASTQC_PROCESSED (ZMB.49) | 0 of 3
+[3b/7070f9] NFC…ERING:BBMAP_BBDUK (ZAF.39) | 1 of 3
+[f0/5a820a] NFC…VAL:BOWTIE2_ALIGN (ZAF.39) | 0 of 1
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (18)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[42/e87f52] NFC…AXPROFILER:FASTQC (ZMB.49) | 3 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[f2/a7ed69] NFC…ASTP:FASTP_PAIRED (ZMB.49) | 3 of 5
+[58/ffd1c1] NFC…:FASTQC_PROCESSED (ZAF.39) | 1 of 3
+[3b/7070f9] NFC…ERING:BBMAP_BBDUK (ZAF.39) | 1 of 3
+[f0/5a820a] NFC…VAL:BOWTIE2_ALIGN (ZAF.39) | 0 of 1
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (18)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[42/e87f52] NFC…AXPROFILER:FASTQC (ZMB.49) | 3 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[f2/a7ed69] NFC…ASTP:FASTP_PAIRED (ZMB.49) | 3 of 5
+[58/ffd1c1] NFC…:FASTQC_PROCESSED (ZAF.39) | 1 of 3
+[65/a99d45] NFC…RING:BBMAP_BBDUK (ZMB.49b) | 2 of 3
+[f0/5a820a] NFC…VAL:BOWTIE2_ALIGN (ZAF.39) | 0 of 2
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (19)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[42/e87f52] NFC…AXPROFILER:FASTQC (ZMB.49) | 3 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[f2/a7ed69] NFC…ASTP:FASTP_PAIRED (ZMB.49) | 3 of 5
+[58/ffd1c1] NFC…:FASTQC_PROCESSED (ZAF.39) | 1 of 3
+[65/a99d45] NFC…RING:BBMAP_BBDUK (ZMB.49b) | 2 of 3
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 0 of 2
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (19)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[42/e87f52] NFC…AXPROFILER:FASTQC (ZMB.49) | 3 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[f2/a7ed69] NFC…ASTP:FASTP_PAIRED (ZMB.49) | 3 of 5
+[58/ffd1c1] NFC…:FASTQC_PROCESSED (ZAF.39) | 1 of 3
+[65/a99d45] NFC…RING:BBMAP_BBDUK (ZMB.49b) | 2 of 3
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 0 of 2
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (19)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[42/e87f52] NFC…AXPROFILER:FASTQC (ZMB.49) | 3 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[6b/2689dc] NFC…FASTP:FASTP_PAIRED (XK.60) | 4 of 5
+[58/ffd1c1] NFC…:FASTQC_PROCESSED (ZAF.39) | 1 of 4
+[65/a99d45] NFC…RING:BBMAP_BBDUK (ZMB.49b) | 2 of 4
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 0 of 2
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (21)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[42/e87f52] NFC…AXPROFILER:FASTQC (ZMB.49) | 3 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[6b/2689dc] NFC…FASTP:FASTP_PAIRED (XK.60) | 4 of 5
+[5b/d3d7a6] NFC…G:FASTQC_PROCESSED (XK.60) | 1 of 4
+[b2/b7f024] NFC…TERING:BBMAP_BBDUK (XK.60) | 2 of 4
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 0 of 2
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (21)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[60/f2c675] NFC…TAXPROFILER:FASTQC (XK.60) | 4 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[6b/2689dc] NFC…FASTP:FASTP_PAIRED (XK.60) | 4 of 5
+[5b/d3d7a6] NFC…G:FASTQC_PROCESSED (XK.60) | 1 of 4
+[b2/b7f024] NFC…TERING:BBMAP_BBDUK (XK.60) | 2 of 4
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 0 of 2
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (21)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[60/f2c675] NFC…TAXPROFILER:FASTQC (XK.60) | 4 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[6b/2689dc] NFC…FASTP:FASTP_PAIRED (XK.60) | 4 of 5
+[e1/7badf0] NFC…FASTQC_PROCESSED (ZMB.49b) | 2 of 4
+[b2/b7f024] NFC…TERING:BBMAP_BBDUK (XK.60) | 2 of 4
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 0 of 2
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (21)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[60/f2c675] NFC…TAXPROFILER:FASTQC (XK.60) | 4 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[6b/2689dc] NFC…FASTP:FASTP_PAIRED (XK.60) | 4 of 5
+[e1/7badf0] NFC…FASTQC_PROCESSED (ZMB.49b) | 2 of 4
+[0c/6dcb74] NFC…ERING:BBMAP_BBDUK (ZMB.49) | 3 of 4
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 0 of 3
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (22)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[60/f2c675] NFC…TAXPROFILER:FASTQC (XK.60) | 4 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[6b/2689dc] NFC…FASTP:FASTP_PAIRED (XK.60) | 4 of 5
+[e1/7badf0] NFC…FASTQC_PROCESSED (ZMB.49b) | 2 of 4
+[0c/6dcb74] NFC…ERING:BBMAP_BBDUK (ZMB.49) | 3 of 4
+[10/cfd35a] NFC…VAL:BOWTIE2_ALIGN (ZMB.49) | 0 of 3
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (22)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[60/f2c675] NFC…TAXPROFILER:FASTQC (XK.60) | 4 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[6b/2689dc] NFC…FASTP:FASTP_PAIRED (XK.60) | 4 of 5
+[e1/7badf0] NFC…FASTQC_PROCESSED (ZMB.49b) | 2 of 4
+[0c/6dcb74] NFC…ERING:BBMAP_BBDUK (ZMB.49) | 3 of 4
+[10/cfd35a] NFC…VAL:BOWTIE2_ALIGN (ZMB.49) | 0 of 3
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (22)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[60/f2c675] NFC…TAXPROFILER:FASTQC (XK.60) | 4 of 5, retries: 1
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[6b/2689dc] NFC…FASTP:FASTP_PAIRED (XK.60) | 4 of 5
+[29/13044a] NFC…:FASTQC_PROCESSED (ZMB.49) | 3 of 4
+[0c/6dcb74] NFC…ERING:BBMAP_BBDUK (ZMB.49) | 3 of 4
+[10/cfd35a] NFC…VAL:BOWTIE2_ALIGN (ZMB.49) | 0 of 3
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (24)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 3 of 5
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 3 of 5
+[10/cfd35a] NFC…VAL:BOWTIE2_ALIGN (ZMB.49) | 0 of 3
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (24)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 3 of 5
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 3 of 5
+[10/cfd35a] NFC…VAL:BOWTIE2_ALIGN (ZMB.49) | 0 of 3
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (25)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 3 of 5
+[b2/b7f024] NFC…TERING:BBMAP_BBDUK (XK.60) | 4 of 5
+[a0/9b160a] NFC…OVAL:BOWTIE2_ALIGN (XK.60) | 0 of 4
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (25)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 3 of 5
+[b2/b7f024] NFC…TERING:BBMAP_BBDUK (XK.60) | 4 of 5
+[a0/9b160a] NFC…OVAL:BOWTIE2_ALIGN (XK.60) | 0 of 4
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (25)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[5b/d3d7a6] NFC…G:FASTQC_PROCESSED (XK.60) | 4 of 5
+[b2/b7f024] NFC…TERING:BBMAP_BBDUK (XK.60) | 4 of 5
+[a0/9b160a] NFC…OVAL:BOWTIE2_ALIGN (XK.60) | 0 of 4
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (26)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[5b/d3d7a6] NFC…G:FASTQC_PROCESSED (XK.60) | 4 of 5
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 0 of 5
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (26)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[5b/d3d7a6] NFC…G:FASTQC_PROCESSED (XK.60) | 4 of 5
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 0 of 5
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (26)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 0 of 5
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_INDEX -
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[-        ] NFC…R:PROFILING:DIAMOND_BLASTX -
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (28)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[f0/5a820a] NFC…VAL:BOWTIE2_ALIGN (ZAF.39) | 1 of 5
+[93/5f340a] NFC…AL:SAMTOOLS_INDEX (ZAF.39) | 0 of 1
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[12/46ba18] NFC…IAMOND_BLASTX (db6|ZAF.39) | 0 of 1
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+WARN: [nf-core/taxprofiler] DIAMOND does not accept paired-end files as input. Only read 1 will be used for profiling. Running DIAMOND for sample ZAF.39 using only read 1.
+
+executor >  slurm (28)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[f0/5a820a] NFC…VAL:BOWTIE2_ALIGN (ZAF.39) | 1 of 5
+[93/5f340a] NFC…AL:SAMTOOLS_INDEX (ZAF.39) | 0 of 1
+[-        ] NFC…HOSTREMOVAL:SAMTOOLS_STATS -
+[12/46ba18] NFC…IAMOND_BLASTX (db6|ZAF.39) | 0 of 1
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+WARN: [nf-core/taxprofiler] DIAMOND does not accept paired-end files as input. Only read 1 will be used for profiling. Running DIAMOND for sample ZAF.39 using only read 1.
+
+executor >  slurm (29)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[f0/5a820a] NFC…VAL:BOWTIE2_ALIGN (ZAF.39) | 1 of 5
+[93/5f340a] NFC…AL:SAMTOOLS_INDEX (ZAF.39) | 1 of 1
+[b5/69e66d] NFC…AL:SAMTOOLS_STATS (ZAF.39) | 0 of 1
+[12/46ba18] NFC…IAMOND_BLASTX (db6|ZAF.39) | 0 of 1
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (29)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[f0/5a820a] NFC…VAL:BOWTIE2_ALIGN (ZAF.39) | 1 of 5
+[93/5f340a] NFC…AL:SAMTOOLS_INDEX (ZAF.39) | 1 of 1
+[b5/69e66d] NFC…AL:SAMTOOLS_STATS (ZAF.39) | 0 of 1
+[12/46ba18] NFC…IAMOND_BLASTX (db6|ZAF.39) | 0 of 1
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (31)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 2 of 5
+[b9/796ed1] NFC…L:SAMTOOLS_INDEX (ZMB.49b) | 1 of 2
+[b5/69e66d] NFC…AL:SAMTOOLS_STATS (ZAF.39) | 0 of 1
+[b8/6f5879] NFC…AMOND_BLASTX (db6|ZMB.49b) | 0 of 2
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+WARN: [nf-core/taxprofiler] DIAMOND does not accept paired-end files as input. Only read 1 will be used for profiling. Running DIAMOND for sample ZMB.49b using only read 1.
+
+executor >  slurm (31)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 2 of 5
+[b9/796ed1] NFC…L:SAMTOOLS_INDEX (ZMB.49b) | 1 of 2
+[b5/69e66d] NFC…AL:SAMTOOLS_STATS (ZAF.39) | 0 of 1
+[b8/6f5879] NFC…AMOND_BLASTX (db6|ZMB.49b) | 0 of 2
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+WARN: [nf-core/taxprofiler] DIAMOND does not accept paired-end files as input. Only read 1 will be used for profiling. Running DIAMOND for sample ZMB.49b using only read 1.
+
+executor >  slurm (32)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 2 of 5
+[b9/796ed1] NFC…L:SAMTOOLS_INDEX (ZMB.49b) | 2 of 2
+[17/284f7d] NFC…L:SAMTOOLS_STATS (ZMB.49b) | 0 of 2
+[b8/6f5879] NFC…AMOND_BLASTX (db6|ZMB.49b) | 0 of 2
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (32)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 2 of 5
+[b9/796ed1] NFC…L:SAMTOOLS_INDEX (ZMB.49b) | 2 of 2
+[17/284f7d] NFC…L:SAMTOOLS_STATS (ZMB.49b) | 0 of 2
+[b8/6f5879] NFC…AMOND_BLASTX (db6|ZMB.49b) | 0 of 2
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (32)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 2 of 5
+[b9/796ed1] NFC…L:SAMTOOLS_INDEX (ZMB.49b) | 2 of 2
+[b5/69e66d] NFC…AL:SAMTOOLS_STATS (ZAF.39) | 1 of 2
+[b8/6f5879] NFC…AMOND_BLASTX (db6|ZMB.49b) | 0 of 2
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (32)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[18/4aabf1] NFC…AL:BOWTIE2_ALIGN (ZMB.49b) | 2 of 5
+[b9/796ed1] NFC…L:SAMTOOLS_INDEX (ZMB.49b) | 2 of 2
+[17/284f7d] NFC…L:SAMTOOLS_STATS (ZMB.49b) | 2 of 2
+[b8/6f5879] NFC…AMOND_BLASTX (db6|ZMB.49b) | 0 of 2
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (34)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[10/cfd35a] NFC…VAL:BOWTIE2_ALIGN (ZMB.49) | 3 of 5
+[b3/6428dc] NFC…AL:SAMTOOLS_INDEX (ZMB.49) | 2 of 3
+[17/284f7d] NFC…L:SAMTOOLS_STATS (ZMB.49b) | 2 of 2
+[42/c3d51a] NFC…IAMOND_BLASTX (db6|ZMB.49) | 0 of 3
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+WARN: [nf-core/taxprofiler] DIAMOND does not accept paired-end files as input. Only read 1 will be used for profiling. Running DIAMOND for sample ZMB.49 using only read 1.
+
+executor >  slurm (34)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[10/cfd35a] NFC…VAL:BOWTIE2_ALIGN (ZMB.49) | 3 of 5
+[b3/6428dc] NFC…AL:SAMTOOLS_INDEX (ZMB.49) | 2 of 3
+[17/284f7d] NFC…L:SAMTOOLS_STATS (ZMB.49b) | 2 of 2
+[42/c3d51a] NFC…IAMOND_BLASTX (db6|ZMB.49) | 0 of 3
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+WARN: [nf-core/taxprofiler] DIAMOND does not accept paired-end files as input. Only read 1 will be used for profiling. Running DIAMOND for sample ZMB.49 using only read 1.
+
+executor >  slurm (35)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[10/cfd35a] NFC…VAL:BOWTIE2_ALIGN (ZMB.49) | 3 of 5
+[b3/6428dc] NFC…AL:SAMTOOLS_INDEX (ZMB.49) | 3 of 3
+[58/876212] NFC…AL:SAMTOOLS_STATS (ZMB.49) | 2 of 3
+[42/c3d51a] NFC…IAMOND_BLASTX (db6|ZMB.49) | 0 of 3
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (35)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[10/cfd35a] NFC…VAL:BOWTIE2_ALIGN (ZMB.49) | 3 of 5
+[b3/6428dc] NFC…AL:SAMTOOLS_INDEX (ZMB.49) | 3 of 3
+[58/876212] NFC…AL:SAMTOOLS_STATS (ZMB.49) | 2 of 3
+[42/c3d51a] NFC…IAMOND_BLASTX (db6|ZMB.49) | 0 of 3
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (35)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[10/cfd35a] NFC…VAL:BOWTIE2_ALIGN (ZMB.49) | 3 of 5
+[b3/6428dc] NFC…AL:SAMTOOLS_INDEX (ZMB.49) | 3 of 3
+[58/876212] NFC…AL:SAMTOOLS_STATS (ZMB.49) | 3 of 3
+[42/c3d51a] NFC…IAMOND_BLASTX (db6|ZMB.49) | 0 of 3
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (37)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[a0/9b160a] NFC…OVAL:BOWTIE2_ALIGN (XK.60) | 4 of 5
+[f8/2b3ceb] NFC…VAL:SAMTOOLS_INDEX (XK.60) | 3 of 4
+[58/876212] NFC…AL:SAMTOOLS_STATS (ZMB.49) | 3 of 3
+[5e/eaffbc] NFC…DIAMOND_BLASTX (db6|XK.60) | 0 of 4
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+WARN: [nf-core/taxprofiler] DIAMOND does not accept paired-end files as input. Only read 1 will be used for profiling. Running DIAMOND for sample XK.60 using only read 1.
+
+executor >  slurm (37)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[a0/9b160a] NFC…OVAL:BOWTIE2_ALIGN (XK.60) | 4 of 5
+[f8/2b3ceb] NFC…VAL:SAMTOOLS_INDEX (XK.60) | 3 of 4
+[58/876212] NFC…AL:SAMTOOLS_STATS (ZMB.49) | 3 of 3
+[5e/eaffbc] NFC…DIAMOND_BLASTX (db6|XK.60) | 0 of 4
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+WARN: [nf-core/taxprofiler] DIAMOND does not accept paired-end files as input. Only read 1 will be used for profiling. Running DIAMOND for sample XK.60 using only read 1.
+
+executor >  slurm (38)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[a0/9b160a] NFC…OVAL:BOWTIE2_ALIGN (XK.60) | 4 of 5
+[f8/2b3ceb] NFC…VAL:SAMTOOLS_INDEX (XK.60) | 4 of 4
+[d7/c33b97] NFC…VAL:SAMTOOLS_STATS (XK.60) | 3 of 4
+[5e/eaffbc] NFC…DIAMOND_BLASTX (db6|XK.60) | 0 of 4
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (38)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[a0/9b160a] NFC…OVAL:BOWTIE2_ALIGN (XK.60) | 4 of 5
+[f8/2b3ceb] NFC…VAL:SAMTOOLS_INDEX (XK.60) | 4 of 4
+[d7/c33b97] NFC…VAL:SAMTOOLS_STATS (XK.60) | 3 of 4
+[5e/eaffbc] NFC…DIAMOND_BLASTX (db6|XK.60) | 0 of 4
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (38)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[a0/9b160a] NFC…OVAL:BOWTIE2_ALIGN (XK.60) | 4 of 5
+[f8/2b3ceb] NFC…VAL:SAMTOOLS_INDEX (XK.60) | 4 of 4
+[d7/c33b97] NFC…VAL:SAMTOOLS_STATS (XK.60) | 4 of 4
+[5e/eaffbc] NFC…DIAMOND_BLASTX (db6|XK.60) | 0 of 4
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (39)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 4 of 5
+[d7/c33b97] NFC…VAL:SAMTOOLS_STATS (XK.60) | 4 of 4
+[5e/eaffbc] NFC…DIAMOND_BLASTX (db6|XK.60) | 0 of 5
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+WARN: [nf-core/taxprofiler] DIAMOND does not accept paired-end files as input. Only read 1 will be used for profiling. Running DIAMOND for sample VNM.48 using only read 1.
+
+executor >  slurm (40)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 4 of 5
+[d7/c33b97] NFC…VAL:SAMTOOLS_STATS (XK.60) | 4 of 4
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 0 of 5
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+WARN: [nf-core/taxprofiler] DIAMOND does not accept paired-end files as input. Only read 1 will be used for profiling. Running DIAMOND for sample VNM.48 using only read 1.
+
+executor >  slurm (40)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 4 of 5
+[d7/c33b97] NFC…VAL:SAMTOOLS_STATS (XK.60) | 4 of 4
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 0 of 5
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+WARN: [nf-core/taxprofiler] DIAMOND does not accept paired-end files as input. Only read 1 will be used for profiling. Running DIAMOND for sample VNM.48 using only read 1.
+
+executor >  slurm (41)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 4 of 5
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 0 of 5
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (41)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 4 of 5
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 0 of 5
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+
+executor >  slurm (41)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 0 of 5
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (41)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[12/46ba18] NFC…IAMOND_BLASTX (db6|ZAF.39) | 1 of 5
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (41)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[b8/6f5879] NFC…AMOND_BLASTX (db6|ZMB.49b) | 2 of 5
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (41)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[42/c3d51a] NFC…IAMOND_BLASTX (db6|ZMB.49) | 3 of 5
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (41)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[5e/eaffbc] NFC…DIAMOND_BLASTX (db6|XK.60) | 4 of 5
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[-        ] NFC…ON_PROFILES:TAXPASTA_MERGE -
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (42)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 5 of 5 ✔
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[db/001f83] NFC…XPASTA_MERGE (diamond|db6) | 0 of 1
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (42)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 5 of 5 ✔
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[db/001f83] NFC…XPASTA_MERGE (diamond|db6) | 0 of 1
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+Plus 7 more processes waiting for tasks…
+
+executor >  slurm (43)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 5 of 5 ✔
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[db/001f83] NFC…XPASTA_MERGE (diamond|db6) | 1 of 1 ✔
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+[8b/4a4d61] NFC…OFILER:TAXPROFILER:MULTIQC | 0 of 1
+Plus 6 more processes waiting for tasks…
+
+executor >  slurm (43)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 5 of 5 ✔
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[db/001f83] NFC…XPASTA_MERGE (diamond|db6) | 1 of 1 ✔
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+[8b/4a4d61] NFC…OFILER:TAXPROFILER:MULTIQC | 0 of 1
+Plus 6 more processes waiting for tasks…
+
+executor >  slurm (43)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 5 of 5 ✔
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[db/001f83] NFC…XPASTA_MERGE (diamond|db6) | 1 of 1 ✔
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+[8b/4a4d61] NFC…OFILER:TAXPROFILER:MULTIQC | 1 of 1 ✔
+Plus 6 more processes waiting for tasks…
+
+executor >  slurm (43)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 5 of 5 ✔
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[db/001f83] NFC…XPASTA_MERGE (diamond|db6) | 1 of 1 ✔
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+[8b/4a4d61] NFC…OFILER:TAXPROFILER:MULTIQC | 1 of 1 ✔
+Plus 6 more processes waiting for tasks…
+-[nf-core/taxprofiler] Pipeline completed successfully-
+
+executor >  slurm (43)
+[-        ] NFC…PROFILER:TAXPROFILER:UNTAR -
+[c1/a1249a] NFC…AXPROFILER:FASTQC (VNM.48) | 5 of 5, retries: 1 ✔
+[-        ] NFC…ORTREAD_FASTP:FASTP_SINGLE -
+[65/fc7552] NFC…ASTP:FASTP_PAIRED (VNM.48) | 5 of 5 ✔
+[fd/169b73] NFC…:FASTQC_PROCESSED (VNM.48) | 5 of 5 ✔
+[cd/fa56c7] NFC…ERING:BBMAP_BBDUK (VNM.48) | 5 of 5 ✔
+[c7/23c57c] NFC…VAL:BOWTIE2_ALIGN (VNM.48) | 5 of 5 ✔
+[08/b86fdb] NFC…AL:SAMTOOLS_INDEX (VNM.48) | 5 of 5 ✔
+[71/69b082] NFC…AL:SAMTOOLS_STATS (VNM.48) | 5 of 5 ✔
+[41/984f9f] NFC…IAMOND_BLASTX (db6|VNM.48) | 5 of 5 ✔
+[-        ] NFC…:KRAKENTOOLS_KREPORT2KRONA -
+[-        ] NFC…ON_KRONA:KAIJU_KAIJU2KRONA -
+[-        ] NFC…ZATION_KRONA:KRONA_CLEANUP -
+[-        ] NFC…N_KRONA:KRONA_KTIMPORTTEXT -
+[-        ] NFC…KRONA:MEGAN_RMA2INFO_KRONA -
+[-        ] NFC…VISUALIZATION_KRONA:GUNZIP -
+[-        ] NFC…ONA:KRONA_KTIMPORTTAXONOMY -
+[db/001f83] NFC…XPASTA_MERGE (diamond|db6) | 1 of 1 ✔
+[-        ] NFC…FILES:TAXPASTA_STANDARDISE -
+[-        ] NFC…CKEN_COMBINEBRACKENOUTPUTS -
+[8b/4a4d61] NFC…OFILER:TAXPROFILER:MULTIQC | 1 of 1 ✔
+Plus 6 more processes waiting for tasks…
+-[nf-core/taxprofiler] Pipeline completed successfully-
+Completed at: 28-Dec-2025 15:52:13
+Duration    : 2d 18h 57m 19s
+CPU hours   : 2'104.4 (0% failed)
+Succeeded   : 42
+Failed      : 1
+
+

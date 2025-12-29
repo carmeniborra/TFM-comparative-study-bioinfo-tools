@@ -1,0 +1,6 @@
+sample,run_accession,instrument_platform,fastq_1,fastq_2,fasta
+VNM.48,ERR1713407,ILLUMINA,00-reads/ERR1713407_R1.fastq.gz,00-reads/ERR1713407_R2.fastq.gz,
+XK.60,ERR1713408,ILLUMINA,00-reads/ERR1713408_R1.fastq.gz,00-reads/ERR1713408_R2.fastq.gz,
+ZAF.39,ERR1713409,ILLUMINA,00-reads/ERR1713409_R1.fastq.gz,00-reads/ERR1713409_R2.fastq.gz,
+ZMB.49,ERR1713410,ILLUMINA,00-reads/ERR1713410_R1.fastq.gz,00-reads/ERR1713410_R2.fastq.gz,
+ZMB.49b,ERR1713411,ILLUMINA,00-reads/ERR1713411_R1.fastq.gz,00-reads/ERR1713411_R2.fastq.gz,
