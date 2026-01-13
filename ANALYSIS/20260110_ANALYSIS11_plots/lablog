@@ -1,0 +1,295 @@
+# LABLOG PARA CREAR LOS GRAFICOS
+
+ln -s ../20260109_ANALYSIS26_bench/* .
+rm -rf _* aligned* gold*
+
+cat <<'EOF' > boxp_agrupado_metricas.R
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+# 1. Cargar los datos
+df <- read.table("metricas_por_muestra.tsv", header = TRUE, sep = "\t")
+
+# --- Limpiar los nombres de las herramientas ---
+df <- df %>%
+  mutate(herramienta = gsub("_db.*", "", herramienta))
+# ------------------------------------------------------------
+
+# 2. Normalización y transformación a formato largo
+df_plot <- df %>%
+  mutate(across(c(Aitchison, JSD, BrayCurtis, Spearman, F1), 
+                ~ ( . - min(., na.rm = TRUE) ) / ( max(., na.rm = TRUE) - min(., na.rm = TRUE) ))) %>%
+  pivot_longer(
+    cols = c(Aitchison, JSD, BrayCurtis, Spearman, F1),
+    names_to = "Metrica",
+    values_to = "Valor_Normalizado"
+  )
+
+# 3. Definir tus colores (5 únicos para las 5 métricas)
+colores_tfm <- c(
+  "Aitchison"  = "#F0B8E0", 
+  "JSD"        = "#D8D890", 
+  "BrayCurtis" = "#88D8E0", 
+  "Spearman"   = "#88B8D8", 
+  "F1"         = "#58D0D8"
+)
+
+# 4. Crear el gráfico con ajustes de legibilidad para tamaño pequeño (13x8 cm)
+p <- ggplot(df_plot, aes(x = herramienta, y = Valor_Normalizado, fill = Metrica)) +
+  # Reducimos el tamaño de outliers y el grosor de las líneas
+  geom_boxplot(outlier.size = 0.3, lwd = 0.3, alpha = 0.9, 
+               position = position_dodge(width = 0.8)) +
+  scale_fill_manual(values = colores_tfm) +
+  theme_minimal(base_size = 8) + 
+  labs(
+    x = "Herramientas",
+    y = "Rendimiento Relativo (0-1)",
+    fill = "Métrica"
+  ) +
+  theme(
+    # Rotación de etiquetas del eje X para evitar solapamiento
+    axis.text.x = element_text(angle = 35, hjust = 1, size = 7), 
+    axis.text.y = element_text(size = 7),
+    axis.title = element_text(size = 8, face = "bold"),
+    legend.position = "bottom",
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7, face = "bold"),
+    legend.key.size = unit(0.3, "cm"),
+    legend.margin = margin(t = -5),
+    panel.grid.major.x = element_line(color = "gray95"),
+    plot.margin = margin(5, 5, 5, 5)
+  )
+
+# 5. Guardado con las dimensiones exactas solicitadas
+ggsave("boxplot_tfm_13x8_limpio.png", plot = p,  
+EOF
+
+cat <<'EOF' > radar_plot.R
+# 1. Cargar librerías
+library(fmsb)
+library(dplyr)
+library(tidyr)
+
+# 2. Cargar y limpiar los datos
+df <- read.table("metricas_por_muestra.tsv", header = TRUE, sep = "\t")
+
+# Limpiamos los nombres de las herramientas eliminando "_db" y lo que sigue
+df <- df %>%
+  mutate(herramienta = gsub("_db.*", "", herramienta))
+
+# Calcular medianas por herramienta ya limpia
+medians <- df %>%
+  group_by(herramienta) %>%
+  summarise(across(c(Aitchison, JSD, BrayCurtis, Spearman, F1), median, na.rm = TRUE))
+
+# Función para normalizar (1 es mejor, 0 es peor)
+norm_best_1 <- function(x, invert = FALSE) {
+  norm <- (x - min(x)) / (max(x) - min(x))
+  if (invert) return(1 - norm)
+  return(norm)
+}
+
+data_radar <- medians %>%
+  mutate(
+    Aitchison = norm_best_1(Aitchison, invert = TRUE),
+    JSD = norm_best_1(JSD, invert = TRUE),
+    BrayCurtis = norm_best_1(BrayCurtis, invert = TRUE),
+    Spearman = norm_best_1(Spearman),
+    F1 = norm_best_1(F1)
+  )
+
+# Formatear para fmsb
+radar_final <- as.data.frame(data_radar[,-1])
+rownames(radar_final) <- data_radar$herramienta
+radar_final <- rbind(rep(1, 5), rep(0, 5), radar_final)
+
+# 3. Definir colores (ajustados a los nombres ya limpios)
+colores_herramientas <- c(
+  "bracken"   = "#E090C0",
+  "ganon"     = "#C070A0",
+  "kaiju"     = "#D8D890",
+  "kraken2"   = "#F0B8E0",
+  "metaphlan" = "#58D0D8",
+  "motus"     = "#88D8E0",
+  "centrifuge"= "#F5AB62" 
+)
+
+col_vector <- colores_herramientas[rownames(radar_final)[-c(1,2)]]
+
+# 4. Generar el gráfico (13x8 cm)
+png("radar_limpio_tfm_13x8.png", width = 13, height = 8, units = "cm", res = 600)
+
+par(mar = c(1, 1, 1, 6)) 
+
+radarchart(radar_final,
+           axistype = 0,    # axistype = 0 elimina los números de los ejes
+           pcol = col_vector, 
+           plwd = 2, 
+           plty = 1,
+           cglcol = "grey85", cglty = 1, cglwd = 0.5,
+           vlcex = 0.7,     # Tamaño de etiquetas de métricas (esquinas)
+           title = "Perfil Comparativo de Herramientas")
+
+# Añadir leyenda a la derecha con nombres limpios
+legend(x = 1.25, y = 1, 
+       legend = rownames(radar_final)[-c(1,2)], 
+       bty = "n", pch = 16, col = col_vector, 
+       cex = 0.6, pt.cex = 1, title = "Herramienta")
+EOF
+
+cd taxpasta/rel_abundance
+
+cat <<'EOF' > upset_plot.R
+# ==============================================================================
+# UpSet plot (ComplexUpset)
+# ==============================================================================
+
+# 1) LIBRERÍAS
+if (!requireNamespace("tidyverse", quietly = TRUE)) install.packages("tidyverse")
+if (!requireNamespace("ComplexUpset", quietly = TRUE)) install.packages("ComplexUpset")
+
+library(tidyverse)
+library(ComplexUpset)
+
+# 2) ARCHIVOS
+files_list <- list(
+  "Gold Standard" = "gold_standard.tsv",
+  "MetaPhlAn"     = "metaphlan_db4.tsv.genus.tsv.study.tsv",
+  "mOTUs"         = "motus_db8.tsv.genus.tsv.study.tsv",
+  "Kraken2"       = "kraken2_db1.tsv.genus.tsv.study.tsv",
+  "Bracken"       = "bracken_db2.tsv.genus.tsv.study.tsv",
+  "Ganon"         = "ganon_db11.tsv.genus.tsv.study.tsv",
+  "Centrifuge"    = "centrifuge_db3.tsv.genus.tsv.study.tsv",
+  "Kaiju"         = "kaiju_db5.tsv.genus.tsv.study.tsv"
+)
+
+# 3) PALETA SET SIZES
+colores_tfm <- c(
+  "Gold Standard" = "#D3D3D3",
+  "Kaiju"         = "#F0B8E0",
+  "Kraken2"       = "#F0B8E0",
+  "Ganon"         = "#D8D890",
+  "Bracken"       = "#D8D890",
+  "MetaPhlAn"     = "#88D8E0",
+  "mOTUs"         = "#88B8D8",
+  "Centrifuge"    = "#58D0D8"
+)
+
+# 4) COMPROBAR ARCHIVOS
+paths <- unlist(files_list, use.names = FALSE)
+missing_files <- paths[!file.exists(paths)]
+if (length(missing_files) > 0) {
+  stop(paste(
+    "Faltan estos archivos:\n",
+    paste(missing_files, collapse = "\n")
+  ))
+}
+
+# 5) LEER GÉNEROS
+lista_generos <- lapply(files_list, function(path) {
+  df <- read.delim(path, sep = "\t", header = TRUE,
+                   stringsAsFactors = FALSE, check.names = FALSE)
+  if (!"genus" %in% names(df)) {
+    stop(paste("El archivo", path, "no tiene la columna 'genus'."))
+  }
+  unique(df$genus[!is.na(df$genus) & df$genus != ""])
+})
+
+# 6) MATRIZ BINARIA
+herramientas <- names(files_list)
+todos_los_generos <- unique(unlist(lista_generos))
+
+data_upset <- data.frame(genus = todos_los_generos, stringsAsFactors = FALSE)
+for (tool in herramientas) {
+  data_upset[[tool]] <- data_upset$genus %in% lista_generos[[tool]]
+}
+
+# 7) TOTALES Y ORDEN
+totales <- colSums(data_upset[, herramientas])
+herramientas <- names(sort(totales, decreasing = TRUE))
+totales <- totales[herramientas]
+
+# Colores mapeados a group (1..n)
+colores_por_group <- setNames(
+  colores_tfm[herramientas],
+  as.character(seq_along(herramientas))
+)
+
+# 8) UPSET PLOT
+
+
+p <- upset(
+  data_upset,
+  herramientas,
+  name = "Herramientas de Clasificación",
+  width_ratio = 0.25,
+  min_size = 10,
+  
+  # Barras de intersección
+
+  base_annotations = list(
+    "Tamaño de la intersección" = intersection_size(
+      counts = TRUE,
+      mapping = aes(fill = after_stat(y))
+    ) +
+      scale_fill_gradient(
+        low  = "#E8F6F0",  # verde pastel muy claro
+        high = "#6FBF9A"   # verde pastel más oscuro
+      ) +
+      ylab("Géneros compartidos") +
+      theme(
+        panel.grid.major.x = element_blank(),
+        legend.position = "none"
+      )
+  ),
+  
+
+  # Set sizes
+
+  set_sizes = (
+    upset_set_size(
+      geom = geom_bar(
+        aes(fill = factor(group)),
+        width = 0.65
+      )
+    ) +
+      geom_text(
+        aes(label = after_stat(count)),
+        hjust = -0.15,
+        size = 3.5,
+        stat = "count"
+      ) +
+      scale_fill_manual(values = colores_por_group, guide = "none") +
+      scale_x_continuous(expand = expansion(mult = c(0, 0.15))) +
+      xlab("Total de géneros detectados") +
+      theme_minimal(base_size = 12) +
+      theme(
+        panel.grid.major.y = element_blank(),
+        axis.text.y = element_text(hjust = 1)
+      )
+  ),
+  
+
+  # Matriz
+
+  matrix = intersection_matrix(
+    geom = geom_point(size = 4),
+    segment = geom_segment(linewidth = 1)
+  ),
+  
+  sort_intersections = "descending",
+  sort_intersections_by = "degree",
+  sort_sets = FALSE
+)
+
+
+# 9) GUARDAR
+
+out_file <- "UpSet_Plot_TFM_CPU_palette_with_totals.png"
+png(out_file, width = 1800, height = 1100, res = 150)
+print(p)
+dev.off()
+
+cat("UpSet plot generado con éxito en:", out_file, "\n")
+EOF
