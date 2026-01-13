@@ -1,0 +1,452 @@
+Dec-04 10:05:14.956 [main] DEBUG nextflow.cli.Launcher - $> nextflow run /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4 -profile singularity -c ../../DOC/taxprofiler.config --input samplesheet.csv --outdir ./results --databases ../../DOC/databasesheet.csv --multiqc_title ERP015409 --preprocessing_qc_tool fastqc --perform_shortread_qc true --shortread_qc_tool fastp --shortread_qc_mergepairs false --shortread_qc_includeunmerged false --shortread_qc_minlength 50 --perform_shortread_complexityfilter true --shortread_complexityfilter_tool bbduk --shortread_complexityfilter_entropy 0.5 --shortread_complexityfilter_bbduk_windowsize 50 --save_complexityfiltered_reads true --perform_shortread_hostremoval true --hostremoval_reference /data/ucct/bi/references/eukaria/homo_sapiens/hg38/NCBI/genome/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz --shortread_hostremoval_index ../../REFERENCES/bowtie2/ --run_kraken2 false --run_bracken false --run_centrifuge false --run_kaiju false --kaiju_taxon_rank genus --run_metaphlan false --run_ganon false --ganon_report_rank genus --run_motus false --run_diamond true --run_krakenuniq false --run_malt false --run_kmcp false --run_profile_standardisation --standardisation_taxpasta_format tsv --taxpasta_taxonomy_dir ../../REFERENCES/taxdump/2025-09-01_taxdump/ --taxpasta_add_name --taxpasta_add_rank --run_krona true --krona_taxonomy_directory /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/krona/taxonomy_db --run_krona_combined -resume
+Dec-04 10:05:15.303 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.04.6
+Dec-04 10:05:15.336 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/carmen.iborra/.nextflow/plugins; core-plugins: nf-amazon@2.15.0,nf-azure@1.16.0,nf-cloudcache@0.4.3,nf-codecommit@0.2.3,nf-console@1.2.1,nf-google@1.21.1,nf-k8s@1.0.0,nf-tower@1.11.4,nf-wave@1.12.1
+Dec-04 10:05:15.364 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Dec-04 10:05:15.365 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Dec-04 10:05:15.368 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Dec-04 10:05:15.380 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Dec-04 10:05:16.337 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/nextflow.config
+Dec-04 10:05:16.355 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/ANALYSIS/20251121_ANALYSIS16_ERP015409_diamond/../../DOC/taxprofiler.config
+Dec-04 10:05:16.356 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/nextflow.config
+Dec-04 10:05:16.357 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/DOC/taxprofiler.config
+Dec-04 10:05:16.374 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/carmen.iborra/.nextflow/secrets/store.json
+Dec-04 10:05:16.377 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@39e69ea7] - activable => nextflow.secret.LocalSecretsProvider@39e69ea7
+Dec-04 10:05:16.392 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Dec-04 10:05:18.081 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `singularity`
+Dec-04 10:05:18.129 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [bih, cfc_dev, uzl_omics, ifb_core, embl_hd, denbi_qbic, alice, mjolnir_globe, uppmax, test_malt, giga, test_fastp, incliva, ilifu, ki_luria, uge, icr_alma, rosalind_uge, lugh, mccleary, test_prinseqplusplus, unibe_ibu, vai, czbiohub_aws, jax, roslin, tes, scw, unc_longleaf, tigem, tubingen_apg, apollo, ipop_up, vsc_calcua, pdc_kth, ceci_nic5, ccga_cau, humantechnopole, stjude, daisybio, eddie, medair, biowulf, apptainer, bi, test_minimal, bigpurple, adcra, cedars, pawsey_setonix, vsc_kul_uhasselt, pawsey_nimbus, rki, test_motus, ucl_myriad, utd_ganymede, charliecloud, fred_hutch, seattlechildrens, icr_davros, ceres, arm, test_nopreprocessing, munin, rosalind, hasta, cfc, uzh, shu_bmrc, ebi_codon_slurm, ebc, ccga_dx, crick, ku_sund_danhead, marvin, lrz_cm4, shifter, biohpc_gen, mana, mamba, york_viking, unc_lccc, wehi, awsbatch, wustl_htcf, arcc, ceci_dragon2, imperial, maestro, software_license, cannon, genotoul, nci_gadi, abims, eva_grace, janelia, nu_genomics, googlebatch, oist, sahmri, kaust, alliance_canada, mpcdf, leicester, vsc_ugent, create, sage, cambridge, jex, test_noprofiling, podman, ebi_codon, cheaha, xanadu, nyu_hpc, test, marjorie, computerome, ucd_sonic, gpu, seg_globe, mssm, sanger, test_alternativepreprocessing, dkfz, bluebear, pasteur, einstein, ethz_euler, m3c, test_bbduk, test_full, imb, ucl_cscluster, tuos_stanage, azurebatch, seadragon, crukmi, csiro_petrichor, qmul_apocrita, wave, docker, engaging, gis, hypatia, psmn, eva, unity, cropdiversityhpc, nygc, fgcz, conda, crg, singularity, mpcdf_viper, pe2, dirac, self_hosted_runner, tufts, uw_hyak_pedslabs, binac2, debug, hki_genie, genouest, cbe, unsw_katana, utd_juno, gitpod, phoenix, seawulf, test_krakenuniq, uod_hpc, fub_curta, test_falco, lovelace, uct_hpc, aws_tower, binac, fsu_draco]
+Dec-04 10:05:18.201 [main] DEBUG nextflow.cli.CmdRun - Enabling nextflow strict mode
+Dec-04 10:05:18.203 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
+Dec-04 10:05:18.219 [main] DEBUG nextflow.cli.CmdRun - Launching `/data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/main.nf` [elated_volhard] DSL2 - revision: bba6c867d1
+Dec-04 10:05:18.220 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins declared=[nf-schema@2.4.2]
+Dec-04 10:05:18.221 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Dec-04 10:05:18.221 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[nf-schema@2.4.2]
+Dec-04 10:05:18.223 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-schema version: 2.4.2
+Dec-04 10:05:18.251 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-schema@2.4.2' resolved
+Dec-04 10:05:18.252 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-schema@2.4.2'
+Dec-04 10:05:18.260 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-schema@2.4.2
+Dec-04 10:05:18.303 [main] DEBUG nextflow.Session - Session UUID: 6b0f91b5-5a50-4f2e-ba5a-a7e66fed2553
+Dec-04 10:05:18.303 [main] DEBUG nextflow.Session - Run name: elated_volhard
+Dec-04 10:05:18.303 [main] DEBUG nextflow.Session - Executor pool size: 4
+Dec-04 10:05:18.345 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Dec-04 10:05:18.350 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=12; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Dec-04 10:05:18.369 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.04.6 build 5954
+  Created: 01-07-2025 11:27 UTC (13:27 CEST)
+  System: Linux 4.18.0-348.7.1.el8_5.x86_64
+  Runtime: Groovy 4.0.26 on OpenJDK 64-Bit Server VM 21.0.2+13-LTS
+  Encoding: UTF-8 (ANSI_X3.4-1968)
+  Process: 3513645@ideafix13 [192.168.7.33]
+  CPUs: 4 - Mem: 5.9 GB (5.5 GB) - Swap: 0 (0)
+Dec-04 10:05:18.403 [main] DEBUG nextflow.Session - Work-dir: /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/ANALYSIS/20251121_ANALYSIS16_ERP015409_diamond/work [nfs]
+Dec-04 10:05:18.404 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/bin
+Dec-04 10:05:18.431 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Dec-04 10:05:18.447 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+Dec-04 10:05:18.475 [main] DEBUG nextflow.Session - Observer factory: ValidationObserverFactory
+Dec-04 10:05:18.481 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Dec-04 10:05:18.503 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Dec-04 10:05:18.511 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 5; maxThreads: 1000
+Dec-04 10:05:18.969 [main] DEBUG nextflow.Session - Session start
+Dec-04 10:05:18.972 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/ANALYSIS/20251121_ANALYSIS16_ERP015409_diamond/results/pipeline_info/execution_trace_2025-12-04_10-05-16.txt
+Dec-04 10:05:19.033 [main] DEBUG n.validation.config.ValidationConfig - Set `validation.monochromeLogs` to false
+Dec-04 10:05:19.035 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.enabled` to true
+Dec-04 10:05:19.036 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.showHiddenParameter` to show_hidden
+Dec-04 10:05:19.036 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.showHidden` to false (Due to --show_hidden)
+Dec-04 10:05:19.036 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.fullParameter` to help_full
+Dec-04 10:05:19.045 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.beforeText` to 
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/taxprofiler 1.2.4
+------------------------------------------------------
+
+Dec-04 10:05:19.046 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.afterText` to 
+* The pipeline
+    https://doi.org/10.1101/2023.10.20.563221
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/taxprofiler/blob/master/CITATIONS.md
+
+Dec-04 10:05:19.047 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.command` to nextflow run nf-core/taxprofiler -profile <docker/singularity/.../institute> --input samplesheet.csv --outdir <OUTDIR>
+Dec-04 10:05:19.050 [main] DEBUG n.validation.config.SummaryConfig - Set `validation.summary.beforeText` to 
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/taxprofiler 1.2.4
+------------------------------------------------------
+
+Dec-04 10:05:19.050 [main] DEBUG n.validation.config.SummaryConfig - Set `validation.summary.afterText` to 
+* The pipeline
+    https://doi.org/10.1101/2023.10.20.563221
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/taxprofiler/blob/master/CITATIONS.md
+
+Dec-04 10:05:19.153 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Dec-04 10:05:19.804 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryMap:paramsSummaryMap]; plugin Id: nf-schema
+Dec-04 10:05:19.811 [main] DEBUG n.validation.config.ValidationConfig - Set `validation.monochromeLogs` to false
+Dec-04 10:05:19.812 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.enabled` to true
+Dec-04 10:05:19.812 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.showHiddenParameter` to show_hidden
+Dec-04 10:05:19.812 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.showHidden` to false (Due to --show_hidden)
+Dec-04 10:05:19.812 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.fullParameter` to help_full
+Dec-04 10:05:19.812 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.beforeText` to 
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/taxprofiler 1.2.4
+------------------------------------------------------
+
+Dec-04 10:05:19.813 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.afterText` to 
+* The pipeline
+    https://doi.org/10.1101/2023.10.20.563221
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/taxprofiler/blob/master/CITATIONS.md
+
+Dec-04 10:05:19.813 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.command` to nextflow run nf-core/taxprofiler -profile <docker/singularity/.../institute> --input samplesheet.csv --outdir <OUTDIR>
+Dec-04 10:05:19.814 [main] DEBUG n.validation.config.SummaryConfig - Set `validation.summary.beforeText` to 
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/taxprofiler 1.2.4
+------------------------------------------------------
+
+Dec-04 10:05:19.814 [main] DEBUG n.validation.config.SummaryConfig - Set `validation.summary.afterText` to 
+* The pipeline
+    https://doi.org/10.1101/2023.10.20.563221
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/taxprofiler/blob/master/CITATIONS.md
+
+Dec-04 10:05:20.118 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryLog:paramsSummaryLog]; plugin Id: nf-schema
+Dec-04 10:05:20.119 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [validateParameters:validateParameters]; plugin Id: nf-schema
+Dec-04 10:05:20.121 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryMap:paramsSummaryMap]; plugin Id: nf-schema
+Dec-04 10:05:20.121 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [samplesheetToList:samplesheetToList]; plugin Id: nf-schema
+Dec-04 10:05:24.638 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryLog:paramsSummaryLog]; plugin Id: nf-schema
+Dec-04 10:05:24.639 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [validateParameters:validateParameters]; plugin Id: nf-schema
+Dec-04 10:05:24.640 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryMap:paramsSummaryMap]; plugin Id: nf-schema
+Dec-04 10:05:24.640 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [samplesheetToList:samplesheetToList]; plugin Id: nf-schema
+Dec-04 10:05:24.880 [main] INFO  nextflow.Nextflow - 
+------------------------------------------------------
+                                        ,--./,-.
+        ___     __   __   __   ___     /,-._.--~'
+  |\ | |__  __ /  ` /  \ |__) |__         }  {
+  | \| |       \__, \__/ |  \ |___     \`-._,-`-,
+                                        `._,._,'
+  nf-core/taxprofiler 1.2.4
+------------------------------------------------------
+[1mInput/output options[0m
+  [0;34minput                             : [0;32msamplesheet.csv[0m
+  [0;34mdatabases                         : [0;32m../../DOC/databasesheet.csv[0m
+  [0;34moutdir                            : [0;32m./results[0m
+  [0;34mmultiqc_title                     : [0;32mERP015409[0m
+
+[1mPreprocessing short-read QC options[0m
+  [0;34mperform_shortread_qc              : [0;32mtrue[0m
+  [0;34mshortread_qc_minlength            : [0;32m50[0m
+  [0;34mperform_shortread_complexityfilter: [0;32mtrue[0m
+  [0;34mshortread_complexityfilter_entropy: [0;32m0.5[0m
+  [0;34msave_complexityfiltered_reads     : [0;32mtrue[0m
+
+[1mPreprocessing host removal options[0m
+  [0;34mperform_shortread_hostremoval     : [0;32mtrue[0m
+  [0;34mhostremoval_reference             : [0;32m/data/ucct/bi/references/eukaria/homo_sapiens/hg38/NCBI/genome/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz[0m
+  [0;34mshortread_hostremoval_index       : [0;32m../../REFERENCES/bowtie2/[0m
+
+[1mProfiling options[0m
+  [0;34mrun_diamond                       : [0;32mtrue[0m
+  [0;34mkaiju_taxon_rank                  : [0;32mgenus[0m
+  [0;34mganon_report_rank                 : [0;32mgenus[0m
+
+[1mPostprocessing and visualisation options[0m
+  [0;34mrun_profile_standardisation       : [0;32mtrue[0m
+  [0;34mrun_krona                         : [0;32mtrue[0m
+  [0;34mkrona_taxonomy_directory          : [0;32m/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/krona/taxonomy_db[0m
+  [0;34mtaxpasta_taxonomy_dir             : [0;32m../../REFERENCES/taxdump/2025-09-01_taxdump/[0m
+  [0;34mtaxpasta_add_name                 : [0;32mtrue[0m
+  [0;34mtaxpasta_add_rank                 : [0;32mtrue[0m
+
+[1mGeneric options[0m
+  [0;34mtrace_report_suffix               : [0;32m2025-12-04_10-05-16[0m
+
+[1mCore Nextflow options[0m
+  [0;34mrunName                           : [0;32melated_volhard[0m
+  [0;34mcontainerEngine                   : [0;32msingularity[0m
+  [0;34mlaunchDir                         : [0;32m/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/ANALYSIS/20251121_ANALYSIS16_ERP015409_diamond[0m
+  [0;34mworkDir                           : [0;32m/data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/ANALYSIS/20251121_ANALYSIS16_ERP015409_diamond/work[0m
+  [0;34mprojectDir                        : [0;32m/data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4[0m
+  [0;34muserName                          : [0;32mcarmen.iborra[0m
+  [0;34mprofile                           : [0;32msingularity[0m
+  [0;34mconfigFiles                       : [0;32m/data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/nextflow.config, /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/ANALYSIS/20251121_ANALYSIS16_ERP015409_diamond/../../DOC/taxprofiler.config[0m
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+-[2m----------------------------------------------------[0m-
+* The pipeline
+    https://doi.org/10.1101/2023.10.20.563221
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/taxprofiler/blob/master/CITATIONS.md
+
+Dec-04 10:05:24.890 [main] DEBUG n.v.parameters.ParameterValidator - Starting parameters validation
+Dec-04 10:05:25.032 [main] DEBUG n.v.v.evaluators.SchemaEvaluator - Started validating /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/DOC/databasesheet.csv
+Dec-04 10:05:25.451 [main] DEBUG n.v.v.evaluators.SchemaEvaluator - Validation of file '../../DOC/databasesheet.csv' passed!
+Dec-04 10:05:25.452 [main] DEBUG n.v.v.evaluators.SchemaEvaluator - Started validating /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/ANALYSIS/20251121_ANALYSIS16_ERP015409_diamond/samplesheet.csv
+Dec-04 10:05:25.559 [main] WARN  n.v.parameters.ParameterValidator - The following invalid input values have been detected:
+
+* --shortread_complexityfilter_prinseqplusplus_mode: entropy
+* --shortread_complexityfilter_bbduk_windowsize: 50
+* --custom_config_base: https://raw.githubusercontent.com/nf-core/configs/master
+* --ganon_report_toppercentile: 
+* --max_cpus: 32
+* --malt_mode: BlastN
+* --krona_taxonomy_directory: /data/ucct/bi/research/20250625_TFM_CIBORRA_IC-SM_T/REFERENCES/krona/taxonomy_db
+* --shortread_complexityfilter_prinseqplusplus_dustscore: 0.5
+* --hostremoval_reference: /data/ucct/bi/references/eukaria/homo_sapiens/hg38/NCBI/genome/GCF_000001405.40_GRCh38.p14/GCF_000001405.40_GRCh38.p14_genomic.fna.gz
+* --max_multiqc_email_size: 25.MB
+* --max_time: 24.h
+* --save_complexityfiltered_reads: true
+* --kaiju_taxon_rank: genus
+* --run_krona_combined: true
+* --longread_filter_tool: nanoq
+* --standardisation_taxpasta_format: tsv
+* --databases: ../../DOC/databasesheet.csv
+* --validate_params: true
+* --run_diamond: true
+* --ganon_report_mincount: 
+* --publish_dir_mode: copy
+* --input: samplesheet.csv
+* --perform_shortread_hostremoval: true
+* --krakenuniq_batch_size: 20
+* --shortread_qc_tool: fastp
+* --trace_report_suffix: 2025-12-04_10-05-16
+* --shortread_redundancyestimation_mode: kmer
+* --preprocessing_qc_tool: fastqc
+* --longread_adapterremoval_tool: porechop_abi
+* --shortread_complexityfilter_entropy: 0.5
+* --taxpasta_add_name: true
+* --ganon_report_maxcount: 
+* --multiqc_title: ERP015409
+* --shortread_complexityfilter_fastp_threshold: 30
+* --shortread_complexityfilter_tool: bbduk
+* --longread_qc_qualityfilter_minquality: 7
+* --diamond_output_format: tsv
+* --custom_config_version: master
+* --max_memory: 376 GB
+* --taxpasta_taxonomy_dir: ../../REFERENCES/taxdump/2025-09-01_taxdump/
+* --ganon_report_type: reads
+* --shortread_qc_minlength: 50
+* --longread_qc_qualityfilter_minlength: 1000
+* --run_profile_standardisation: true
+* --perform_shortread_qc: true
+* --ganon_report_rank: genus
+* --run_krona: true
+* --shortread_hostremoval_index: ../../REFERENCES/bowtie2/
+* --longread_qc_qualityfilter_targetbases: 500000000
+* --taxpasta_add_rank: true
+* --perform_shortread_complexityfilter: true
+* --outdir: ./results
+* --pipelines_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/
+* --longread_qc_qualityfilter_keeppercent: 90
+
+
+Dec-04 10:05:25.566 [main] ERROR n.v.parameters.ParameterValidator - Validation of pipeline parameters failed!
+Dec-04 10:05:25.574 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_580731b654d6198d: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/megan/rma2info/main.nf
+  Script_ae574c771ee06643: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/shortread_fastp.nf
+  Script_35ce3bb82354ee09: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/ganon/report/main.nf
+  Script_e9a768d67897c677: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/kaiju/kaiju2table/main.nf
+  Script_3ff72e26fdce4851: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/nonpareil/nonpareilcurvesr/main.nf
+  Script_688121a32534d1f1: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/prinseqplusplus/main.nf
+  Script_b11e267fbc222249: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/krakentools/kreport2krona/main.nf
+  Script_1643cd40eddb2dcb: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/centrifuge/centrifuge/main.nf
+  Script_659bf62aed4d11d7: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/longread_filtering.nf
+  Script_9e61b79b569950a4: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/fastqc/main.nf
+  Script_03ccba01c20c6cbe: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/samtools/fastq/main.nf
+  Script_2cef36bdfd8579f4: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/shortread_preprocessing.nf
+  Script_a780234b47eb3af3: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/gunzip/main.nf
+  Script_1643d49a8f47fca8: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/shortread_adapterremoval.nf
+  Script_5ec1c60f579ea8b8: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/longread_preprocessing.nf
+  Script_4d9521eff850ef17: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/krona/ktimporttaxonomy/main.nf
+  Script_57cb67e37d725c0d: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/krona/ktimporttext/main.nf
+  Script_325caa881dec42e2: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/porechop/abi/main.nf
+  Script_b7c1ee87598bf1e0: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/krakenuniq/preloadedkrakenuniq/main.nf
+  Script_76f9041d9ade3f9f: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/malt/run/main.nf
+  Script_2a3123de5fac596c: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/untar/main.nf
+  Script_3638011c9808828b: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/falco/main.nf
+  Script_e7166807bc3557e0: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/diamond/blastx/main.nf
+  Script_947c5643256589de: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/main.nf
+  Script_fac742cd7f022273: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/taxpasta/merge/main.nf
+  Script_85ee399a15460323: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/kmcp/profile/main.nf
+  Script_c1d8d98529efafbb: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/bowtie2/align/main.nf
+  Script_ebedba7dd61db3d1: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/shortread_complexityfiltering.nf
+  Script_69940ecfa0f89b56: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/taxpasta/standardise/main.nf
+  Script_82ee5691354bfa51: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/bracken/bracken/main.nf
+  Script_1e96578ee1fca2d4: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/utils_nfcore_taxprofiler_pipeline/main.nf
+  Script_8c6cd303ae812c8b: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/minimap2/align/main.nf
+  Script_fa736063d610be23: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/visualization_krona.nf
+  Script_45d45be70069d617: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/multiqc/main.nf
+  Script_3fd6fa3cc90a66ae: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/longread_adapterremoval.nf
+  Script_6166793ef63b46e3: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/samtools/view/main.nf
+  Script_1926d0fcefb4d542: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/motus/profile/main.nf
+  Script_215a636da7ab24a2: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/nf-core/utils_nfschema_plugin/main.nf
+  Script_787ea532af4dc8ab: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/local/krona_cleanup.nf
+  Script_60ebceeed72f5693: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/ganon/table/main.nf
+  Script_495548ce4a6ba5f4: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/samtools/stats/main.nf
+  Script_5c4e8d4051efa81e: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/nf-core/utils_nfcore_pipeline/main.nf
+  Script_80eec337e304f7e4: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/nonpareil/nonpareil/main.nf
+  Script_167766da3f34eb9e: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/longread_hostremoval.nf
+  Script_4e51b53ff7a33a0f: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/bbmap/bbduk/main.nf
+  Script_e56af4e74a72fd3c: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/nonpareil/set/main.nf
+  Script_41bd0f9820609141: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/kraken2/kraken2/main.nf
+  Script_f93ae1b28ada1448: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/adapterremoval/main.nf
+  Script_82e11b06961f857f: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/local/kraken2_standard_report.nf
+  Script_40116f323c6ad0c6: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/minimap2/index/main.nf
+  Script_fde59658c49abbd9: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/centrifuge/kreport/main.nf
+  Script_71ec8bf30573c862: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/profiling.nf
+  Script_967ea477ddb06272: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/samtools/index/main.nf
+  Script_3998212310dae98b: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/nonpareil/curve/main.nf
+  Script_5c2449b67f50a876: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/kaiju/kaiju/main.nf
+  Script_587b8379715e2678: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/standardisation_profiles.nf
+  Script_a00d27839be80c01: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/bracken/combinebrackenoutputs/main.nf
+  Script_4f612cfd8c52e8cd: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/nf-core/utils_nextflow_pipeline/main.nf
+  Script_34bb0ebf41e831b0: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/kaiju/kaiju2krona/main.nf
+  Script_87ddd5aba4a8124e: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/nonpareil.nf
+  Script_c0d5b8bfa549d36a: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/porechop/porechop/main.nf
+  Script_029dc9a3afba34cb: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/filtlong/main.nf
+  Script_6fb3e85b30e10473: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/metaphlan/metaphlan/main.nf
+  Script_b355087dc9d365d0: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/fastp/main.nf
+  Script_f236c00f8bab21e8: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/metaphlan/mergemetaphlantables/main.nf
+  Script_bdc9603a1f9fc29b: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/workflows/taxprofiler.nf
+  Script_ec1daa6037d5f73e: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/nanoq/main.nf
+  Script_ba3dee804d95fe94: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/krakentools/combinekreports/main.nf
+  Script_4779b6382e5427ab: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/cat/fastq/main.nf
+  Script_053a4f981e60653f: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/bowtie2/build/main.nf
+  Script_815095cae2e55f35: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/motus/merge/main.nf
+  Script_abd0feab33c0ac4f: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/subworkflows/local/shortread_hostremoval.nf
+  Script_7c7b55d28029b1cf: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/ganon/classify/main.nf
+  Script_a8789a5d9b4b681b: /data/ucct/bi/pipelines/nf-core-taxprofiler/nf-core-taxprofiler-1.2.4/modules/nf-core/kmcp/search/main.nf
+Dec-04 10:05:25.574 [main] DEBUG nextflow.Session - Session aborted -- Cause: [0;31mThe following invalid input values have been detected:
+
+* --input (samplesheet.csv): Validation of file failed:
+	-> Entry 1: Error for field 'fastq_2' (00-reads/_R2.fastq.gz): the file or directory '00-reads/_R2.fastq.gz' does not exist (Gzipped FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'. If not applicable, leave it empty.)
+	-> Entry 1: Error for field 'fastq_1' (00-reads/_R1.fastq.gz): the file or directory '00-reads/_R1.fastq.gz' does not exist (Gzipped FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz')
+	-> Entry 1: Missing required field(s): sample, run_accession
+[0m
+
+Dec-04 10:05:25.586 [main] DEBUG nextflow.Session - The following nodes are still active:
+  [operator] map
+
+Dec-04 10:05:25.595 [main] DEBUG nextflow.cli.Launcher - Operation aborted
+nextflow.validation.exceptions.SchemaValidationException: [0;31mThe following invalid input values have been detected:
+
+* --input (samplesheet.csv): Validation of file failed:
+	-> Entry 1: Error for field 'fastq_2' (00-reads/_R2.fastq.gz): the file or directory '00-reads/_R2.fastq.gz' does not exist (Gzipped FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'. If not applicable, leave it empty.)
+	-> Entry 1: Error for field 'fastq_1' (00-reads/_R1.fastq.gz): the file or directory '00-reads/_R1.fastq.gz' does not exist (Gzipped FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz')
+	-> Entry 1: Missing required field(s): sample, run_accession
+[0m
+
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.validation.parameters.ParameterValidator.validateParametersMap(ParameterValidator.groovy:179)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.validation.ValidationExtension.validateParameters(ValidationExtension.groovy:106)
+	at nextflow.validation.ValidationExtension.validateParameters(ValidationExtension.groovy)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at nextflow.script.FunctionDef.invoke_a(FunctionDef.groovy:64)
+	at nextflow.script.ComponentDef.invoke_o(ComponentDef.groovy:40)
+	at nextflow.script.WorkflowBinding.invokeMethod(WorkflowBinding.groovy:105)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:651)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:628)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeOnDelegationObjects(ClosureMetaClass.java:392)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:331)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at Script_215a636da7ab24a2$_runScript_closure1$_closure2.doCall(Script_215a636da7ab24a2:39)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:280)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at groovy.lang.Closure.call(Closure.java:433)
+	at groovy.lang.Closure.call(Closure.java:412)
+	at nextflow.script.WorkflowDef.run0(WorkflowDef.groovy:205)
+	at nextflow.script.WorkflowDef.run(WorkflowDef.groovy:189)
+	at nextflow.script.BindableDef.invoke_a(BindableDef.groovy:51)
+	at nextflow.script.ComponentDef.invoke_o(ComponentDef.groovy:40)
+	at nextflow.script.WorkflowBinding.invokeMethod(WorkflowBinding.groovy:105)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:651)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:628)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeOnDelegationObjects(ClosureMetaClass.java:392)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:331)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at Script_1e96578ee1fca2d4$_runScript_closure3$_closure5.doCall(Script_1e96578ee1fca2d4:54)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:280)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at groovy.lang.Closure.call(Closure.java:433)
+	at groovy.lang.Closure.call(Closure.java:412)
+	at nextflow.script.WorkflowDef.run0(WorkflowDef.groovy:205)
+	at nextflow.script.WorkflowDef.run(WorkflowDef.groovy:189)
+	at nextflow.script.BindableDef.invoke_a(BindableDef.groovy:51)
+	at nextflow.script.ComponentDef.invoke_o(ComponentDef.groovy:40)
+	at nextflow.script.WorkflowBinding.invokeMethod(WorkflowBinding.groovy:105)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokePogoMethod(InvokerHelper.java:651)
+	at org.codehaus.groovy.runtime.InvokerHelper.invokeMethod(InvokerHelper.java:628)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeOnDelegationObjects(ClosureMetaClass.java:392)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:331)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at Script_947c5643256589de$_runScript_closure2$_closure4.doCall(Script_947c5643256589de:67)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:343)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:328)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:280)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1007)
+	at groovy.lang.Closure.call(Closure.java:433)
+	at groovy.lang.Closure.call(Closure.java:412)
+	at nextflow.script.WorkflowDef.run0(WorkflowDef.groovy:205)
+	at nextflow.script.WorkflowDef.run(WorkflowDef.groovy:189)
+	at nextflow.script.BindableDef.invoke_a(BindableDef.groovy:51)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.script.BaseScript.run0(BaseScript.groovy:182)
+	at org.codehaus.groovy.vmplugin.v8.IndyInterface.fromCache(IndyInterface.java:321)
+	at nextflow.script.BaseScript.run(BaseScript.groovy:193)
+	at nextflow.script.parser.v1.ScriptLoaderV1.runScript(ScriptLoaderV1.groovy:246)
+	at nextflow.script.parser.v1.ScriptLoaderV1.runScript(ScriptLoaderV1.groovy)
+	at nextflow.script.ScriptRunner.run(ScriptRunner.groovy:246)
+	at nextflow.script.ScriptRunner.execute(ScriptRunner.groovy:139)
+	at nextflow.cli.CmdRun.run(CmdRun.groovy:379)
+	at nextflow.cli.Launcher.run(Launcher.groovy:513)
+	at nextflow.cli.Launcher.main(Launcher.groovy:673)
